@@ -1,6 +1,95 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+
+
+const guest = [
+  {
+    name: 'History',
+    path: '/',
+  },
+  {
+    name: 'Mission',
+    path: '/mission',
+  },
+  {
+    name: 'Community',
+    path: '/community',
+  },
+  {
+    name: 'Academy',
+    path: '/academy',
+  },
+  {
+    name: 'Login',
+    path: '/login',
+  },
+]
+const client = [
+  {
+    name: 'Community',
+    path: '/community',
+  },
+  {
+    name: 'My Space',
+    path: '/myspace',
+  },
+  {
+    name: 'Consulting',
+    path: '/contact',
+  },
+  {
+    name: 'Academy',
+    path: '/academy',
+  },
+  {
+    name: 'Logout',
+    path: '/logout',
+  },
+]
+const creator = [
+  {
+    name: 'Community',
+    path: '/community',
+  },
+  {
+    name: 'My Space',
+    path: '/myspace',
+  },
+  {
+    name: 'Consulting',
+    path: '/contact',
+  },
+  {
+    name: 'Academy',
+    path: '/academy',
+  },
+  {
+    name: 'Logout',
+    path: '/logout',
+  },
+]
+const admin = [
+  {
+    name: 'Community',
+    path: '/community',
+  },
+  {
+    name: 'Dashboard',
+    path: '/dashboard',
+  },
+  {
+    name: 'Consulting',
+    path: '/contact',
+  },
+  {
+    name: 'Academy',
+    path: '/academy',
+  },
+  {
+    name: 'Logout',
+    path: '/logout',
+  },
+]
 </script>
 
 <template>
@@ -8,11 +97,12 @@ import HelloWorld from './components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink v-if="!user" v-for="guest in links" to="{{guest.path}}">{{ guest.name }}</RouterLink>
+        <RouterLink v-if="user.ID === 1" v-for="client in links" to="{{client.path}}">{{ client.name }}</RouterLink>
+        <RouterLink v-if="user.ID === 2" v-for="creator in links" to="{{creator.path}}">{{ creator.name }}</RouterLink>
+        <RouterLink v-if="user.ID === 0" v-for="admin in links" to="{{admin.path}}">{{ admin.name }}</RouterLink>
       </nav>
     </div>
   </header>
