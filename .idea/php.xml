@@ -122,6 +122,7 @@
       <path value="$PROJECT_DIR$/Back-end/vendor/teapot/status-code" />
       <path value="$PROJECT_DIR$/Back-end/vendor/cloudinary/cloudinary_php" />
       <path value="$PROJECT_DIR$/Back-end/vendor/cloudinary/transformation-builder-sdk" />
+      <path value="$PROJECT_DIR$/Back-end/vendor/spatie/laravel-permission" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

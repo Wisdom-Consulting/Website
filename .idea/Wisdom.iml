@@ -11,6 +11,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Back-end/vendor/teapot/status-code" />
       <excludeFolder url="file://$MODULE_DIR$/Back-end/vendor/cloudinary/cloudinary_php" />
       <excludeFolder url="file://$MODULE_DIR$/Back-end/vendor/cloudinary/transformation-builder-sdk" />
+      <excludeFolder url="file://$MODULE_DIR$/Back-end/vendor/spatie/laravel-permission" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

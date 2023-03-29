@@ -15,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Load landing page
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+// Route ressource for users
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
