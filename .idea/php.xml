@@ -123,6 +123,7 @@
       <path value="$PROJECT_DIR$/Back-end/vendor/cloudinary/cloudinary_php" />
       <path value="$PROJECT_DIR$/Back-end/vendor/cloudinary/transformation-builder-sdk" />
       <path value="$PROJECT_DIR$/Back-end/vendor/spatie/laravel-permission" />
+      <path value="$PROJECT_DIR$/Back-end/vendor/joelbutcher/laravel-archivable" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
