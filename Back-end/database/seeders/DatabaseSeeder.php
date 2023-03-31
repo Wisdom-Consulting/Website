@@ -22,14 +22,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
          User::factory(10)->create();
-         Chat::factory(10)->create();
-         Content::factory(10)->create();
-         Question::factory(10)->create();
-         Quiz::factory(10)->create();
-         Message::factory(10)->create();
          Category::factory(3)->create();
-         Answer::factory(10)->create();
+         Chat::factory(10)->create();
          ChatParticipant::factory(10)->create();
+         Message::factory(10)->create();
+         Content::factory(10)->create();
+         Quiz::factory(10)->create();
+         Question::factory(10)->create();
+         Answer::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
