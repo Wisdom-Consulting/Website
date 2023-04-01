@@ -1,6 +1,7 @@
 <script setup>
-import {RouterView, RouterLink} from 'vue-router'
+import {RouterLink, RouterView} from 'vue-router'
 import {onMounted} from "vue";
+import "./axios"
 import { useAuthStore} from "@/stores/Auth";
 import Navbar from "@/components/Navbar.vue";
 
@@ -12,9 +13,6 @@ const authStore = useAuthStore();
 </script>
 
 <template>
-  <div>
-    <p class="bg-blue-200">Sidatiiiiiiiiiiiiiiiiiiiiiii</p>
-  </div>
-  <navbar/>
-  <router-link/>
+  <Navbar/>
+  <RouterView/>
 </template>

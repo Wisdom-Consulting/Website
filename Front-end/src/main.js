@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 
 import './index.css'
+import './assets/tailwind.css'
 
 const pinia = createPinia();
 pinia.use(({store}) => {

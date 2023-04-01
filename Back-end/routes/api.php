@@ -28,5 +28,6 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 
 Route::middleware(['auth:sanctum'])->get('/signature', cloudinary::class.'@getSignature');
 
-// Route ressource for users
+// Route resource for users
+
 

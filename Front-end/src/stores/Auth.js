@@ -6,7 +6,6 @@ export const useAuthStore = defineStore('auth', {
         authUser: null,
         authToken: null,
         authError: null,
-        tickets: null
     }),
     getters: {
         user: (state) => state.authUser,
@@ -25,13 +24,15 @@ export const useAuthStore = defineStore('auth', {
         async logIn(form) {
             this.authError = null;
             try {
-                const response = await axios.post('Users/signin', {
-                    token: form.token
+                const response = await axios.post('api/user', {
+                    email: form.email,
+                    password: form.password
                 });
+                console.log(response)
 
-                localStorage.setItem('token', form.token);
-                this.authUser = response.data;
-                await this.router.push('/');
+                // await localStorage.setItem('token', response.data.token);
+                // this.authUser = response.data;
+                // await this.router.push('/');
             } catch (error) {
                 this.authError = error.response.data.error
             }
