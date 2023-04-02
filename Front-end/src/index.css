@@ -63,6 +63,25 @@ body{
     .opening2 { display: none; }
     .landing_image_1 { display: none; }
 
+    .parent2{
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 10px;
+    }
+
+    .parent3{
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        gap: 20px;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
 }
 
 /*@media screen and (min-width: 480px) {*/

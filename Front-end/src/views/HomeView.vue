@@ -17,7 +17,7 @@ import {RouterLink} from 'vue-router'
                       class="btn px-4 py-2 bg-[#003333] border-[6px] border-[#003333] rounded-2xl text-white font-bold">
             Test my knowledge
           </RouterLink>
-          <RouterLink to="" class="btn px-4 py-2 border-[6px] rounded-2xl text-[#003333] font-bold">Create account
+          <RouterLink to="" class="btn px-4 py-2 border-[6px] border-[#003333] rounded-2xl text-[#003333] font-bold">Create account
           </RouterLink>
         </div>
       </div>
