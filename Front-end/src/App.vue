@@ -4,6 +4,7 @@ import {onMounted} from "vue";
 import "./axios"
 import { useAuthStore} from "@/stores/Auth";
 import Navbar from "@/components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
 
 const authStore = useAuthStore();
 
@@ -15,4 +16,5 @@ const authStore = useAuthStore();
 <template>
   <Navbar/>
   <RouterView/>
+  <Footer/>
 </template>
