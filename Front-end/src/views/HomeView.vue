@@ -1,14 +1,15 @@
 <script setup>
-import {RouterLink} from 'vue-router'</script>
+import {RouterLink} from 'vue-router'
+</script>
 
 <template>
   <main class="parent">
     <div class="rectangle">
-      <img v-bind:src="'./src/assets/landing_rectangle.png'" alt="">
+      <img v-bind:src="'./src/assets/landing_rectangle.png'" class="h-fit" alt="">
     </div>
     <div class="opening1">
       <div class="w-full flex flex-col gap-4">
-        <h1 class="font-extrabold text-[55px] text-wrap text-[#003333]">Boost your financial competencies !</h1>
+        <h1 class="font-extrabold lg:text-[55px] text-[30px] text-wrap text-[#003333]">Boost your financial competencies !</h1>
         <h2 class="font-medium text-[30px] text-wrap text-[#003333]">The wise platform that helps you better manage your
           finances !</h2>
         <div class="flex gap-4 w-full">
@@ -21,8 +22,8 @@ import {RouterLink} from 'vue-router'</script>
         </div>
       </div>
     </div>
-    <div class="landing_image_1">
-      <img v-bind:src="'./src/assets/landing_image_1.png'" alt="">
+    <div class="landing_image_1 hidden lg:block">
+      <img v-bind:src="'./src/assets/landing_image_1.png'" class="lg:self-center" alt="">
     </div>
     <div class="landing_image_2">
       <img v-bind:src="'./src/assets/landing_image_2.png'" alt="">
@@ -165,5 +166,12 @@ import {RouterLink} from 'vue-router'</script>
         <svg class="w-10 self-center" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" id="facebook"><path d="M20.9,2H3.1A1.1,1.1,0,0,0,2,3.1V20.9A1.1,1.1,0,0,0,3.1,22h9.58V14.25h-2.6v-3h2.6V9a3.64,3.64,0,0,1,3.88-4,20.26,20.26,0,0,1,2.33.12v2.7H17.3c-1.26,0-1.5.6-1.5,1.47v1.93h3l-.39,3H15.8V22h5.1A1.1,1.1,0,0,0,22,20.9V3.1A1.1,1.1,0,0,0,20.9,2Z"></path></svg>
       </div>
     </div>
+  </div>
+  <div class="flex bg-[#003333] w-full p-4 mt-10 justify-between align-center gap-2 text-xs md:text-lg">
+    <img v-bind:src="'./src/assets/footer_logo.png'" class="md:h-full h-7 self-center" alt="">
+    <RouterLink to="" class="text-white font-bold self-center">History</RouterLink>
+    <RouterLink to="" class="text-white font-bold self-center">Academy</RouterLink>
+    <RouterLink to="" class="text-white font-bold self-center">Contact</RouterLink>
+    <RouterLink to="" class="text-white font-bold self-center">Privacy policy</RouterLink>
   </div>
 </template>
