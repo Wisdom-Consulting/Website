@@ -4,57 +4,58 @@ import axios from 'axios'
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         authUser: null,
-        authToken: null,
         authError: null,
     }),
     getters: {
         user: (state) => state.authUser,
-        token: (state) => state.authToken,
-        errors: (state) => state.authError,
+        errors: (state) => state.authError
     },
     actions: {
         async getUser() {
-            const response = await axios.post("Users/getUser",
-                {
-                    'token': localStorage.getItem('token')
-                });
-            localStorage.setItem('ID', response.data.ID);
-            this.authUser = response.data
+            await axios.get("/api/user");
         },
         async logIn(form) {
             this.authError = null;
             try {
-                const response = await axios.post('api/user', {
+                await this.getToken();
+                const response = await axios.post('/login', {
                     email: form.email,
                     password: form.password
                 });
-                console.log(response)
-
-                // await localStorage.setItem('token', response.data.token);
-                // this.authUser = response.data;
-                // await this.router.push('/');
+                if (response.status === 204) {
+                this.authUser = await this.getUser()
+                await this.router.push('/')
+                } else {
+                this.authError = response.data.message
+                }
+            } catch (error) {
+                this.authError = error
+            }
+        },
+        async signUp(form) {
+            this.authError = null;
+            try {
+                await this.getToken();
+               const {status} = await axios.post('/register', {
+                    name: form.name,
+                    email: form.email,
+                    password: form.password,
+                    password_confirmation: form.password_confirmation
+                })
+                if (status === 204) {   // 204 is the status code for successful registration
+                this.authUser = await this.getUser()
+                await this.router.push('/')
+                }
             } catch (error) {
                 this.authError = error.response.data.error
             }
-        }
-    },
-    async signUp(form) {
-        this.authError = null;
-        try {
-            const response = await axios.post('Users/signup', {
-                name: form.firstName,
-                email: form.lastName,
-                password: form.email
-            })
-            this.authToken = response.data.Token
+        },
+        async logOut() {
+            await axios.post('/logout');
             await this.router.push('/signin')
-        } catch (error) {
-            this.authError = error.response.data.error
+        },
+        async getToken() {
+            await axios.get('/sanctum/csrf-cookie');
         }
-    },
-    async logOut() {
-        localStorage.clear();
-        this.authUser = null;
-        await this.router.push('/signin')
     },
 })

@@ -110,9 +110,9 @@ const admin = [
           </div>
           <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
             <ul class="flex flex-col gap-6 font-bold text-[#003333] p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
-              <RouterLink v-for="link in guest" to="{{link.path}}">{{ link.name }}</RouterLink>
-<!--              <RouterLink v-if="authStore.user === null" v-for="link in guest" to="{{link.path}}">{{ link.name }}</RouterLink>-->
-<!--              <RouterLink v-if="authStore.user.ID === 1" v-for="link in client" to="{{link.path}}">{{ link.name }}</RouterLink>-->
+              <RouterLink v-if="authStore.user === null" v-for="link in guest" to="{{link.path}}">{{ link.name }}</RouterLink>
+<!--              <RouterLink v_else v-for="link in guest" to="{{link.path}}">{{ link.name }}</RouterLink>-->
+              <RouterLink v-if="authStore.user" v-for="link in client" to="{{link.path}}">{{ link.name }}</RouterLink>
 <!--              <RouterLink v-if="authStore.user.ID === 2" v-for="link in creator" to="{{link.path}}">{{ link.name }}</RouterLink>-->
 <!--              <RouterLink v-if="authStore.user.ID === 0" v-for="link in admin" to="{{link.path}}">{{ link.name }}</RouterLink>-->
             </ul>
