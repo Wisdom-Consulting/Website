@@ -76,7 +76,7 @@ body{
         gap: 20px;
     }
 
-    .container{
+    .containerr{
         display: flex;
         flex-direction: column;
         gap: 40px;

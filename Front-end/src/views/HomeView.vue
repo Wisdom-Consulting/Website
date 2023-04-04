@@ -39,7 +39,7 @@ import {RouterLink} from 'vue-router'
       </div>
     </div>
   </main>
-  <div id="container mt-20" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div id="containerr mt-20" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex-col gap-8 w-full md:flex md:flex-row md:align-center">
       <div class="w-fit md:w-1/3 text-center flex flex-col gap-4">
         <h1 class="font-bold text-[30px] text-wrap text-[#003333]">An adapted curriculum</h1>
@@ -125,7 +125,7 @@ import {RouterLink} from 'vue-router'
       </div>
     </div>
   </div>
-  <div id="container mt-20" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+  <div id="containerr mt-20" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
     <div class="flex-col gap-8 w-full md:flex md:flex-row md:align-center">
       <div class="w-fit md:w-1/3 text-center flex flex-col">
         <h1 class="font-bold text-[50px] text-wrap text-[#003333]">+2000</h1>
@@ -149,7 +149,7 @@ import {RouterLink} from 'vue-router'
              placeholder="We answer all your questions"/>
     </div>
   </div>
-  <div id="container mt-20" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+  <div id="containerr mt-20" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
     <div class="flex-col gap-8 w-full md:flex md:flex-row md:align-center">
       <div class="w-fit md:w-1/3 flex flex-col">
         <h1 class="font-bold text-[45px] w-fit text-wrap text-[#003333]">Ready to master your finances?</h1>
