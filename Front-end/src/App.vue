@@ -8,8 +8,8 @@ import Footer from "@/components/Footer.vue";
 
 const authStore = useAuthStore();
 
-onMounted (async () => {
-  // await authStore.getUser();
+onMounted ( async () => {
+  await authStore.getUser();
 })
 
 </script>

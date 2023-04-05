@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 //    return ['Laravel' => app()->version()];
-    dd(User::all()->random()->id);
+    dd(request()->user());
 });
 
 require __DIR__.'/auth.php';

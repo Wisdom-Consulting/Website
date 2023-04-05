@@ -1,6 +1,5 @@
 import {defineStore} from 'pinia'
 import axios from 'axios'
-import Cookies from 'js-cookie'
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -13,12 +12,8 @@ export const useAuthStore = defineStore('auth', {
     },
     actions: {
         async getUser() {
-            await this.getToken();
-            this.authUser = await axios.get("/api/user", {
-                headers: {
-                    'X-CSRF-TOKEN': Cookies.get('XSRF-TOKEN')
-                }
-            });
+            const response = await axios.get("/api/user");
+            this.authUser = response.data
         },
         async logIn(form) {
             this.authError = null;
@@ -28,10 +23,8 @@ export const useAuthStore = defineStore('auth', {
                     email: form.email,
                     password: form.password
                 });
-                console.log(response)
-                // return
                 if (response.status === 204) {
-                    this.authUser = await this.getUser()
+                    await this.getUser()
                     await this.router.push('/')
                 } else {
                     this.authError = response.data.message
@@ -54,7 +47,7 @@ export const useAuthStore = defineStore('auth', {
                     password_confirmation: form.password_confirmation
                 })
                 if (status === 204) {   // 204 is the status code for successful registration
-                    this.authUser = await this.getUser()
+                    await this.getUser()
                     await this.router.push('/')
                 }
             } catch (error) {
@@ -64,7 +57,8 @@ export const useAuthStore = defineStore('auth', {
         },
         async logOut() {
             await axios.post('/logout');
-            await this.router.push('/signin')
+            this.authUser = null;
+            await this.router.push('/login')
         },
         async getToken() {
             await axios.get('/sanctum/csrf-cookie');

@@ -1,29 +1,26 @@
 <script setup>
-import { RouterLink} from 'vue-router'
-import { useAuthStore } from '@/stores/Auth'
-import { Navbar, NavbarLogo, NavbarCollapse, NavbarLink } from 'flowbite-vue'
+import {RouterLink} from 'vue-router'
+import {useAuthStore} from '@/stores/Auth'
+import {Navbar, NavbarCollapse, NavbarLink} from 'flowbite-vue'
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 
 const authStore = useAuthStore()
 const guest = [
   {
     name: 'History',
     path: '/',
-    style: '',
   },
   {
     name: 'Mission',
     path: '/mission',
-    style: '',
   },
   {
     name: 'Community',
     path: '/community',
-    style: '',
   },
   {
     name: 'Academy',
     path: '/academy',
-    style: '',
   },
 ]
 const client = [
@@ -42,10 +39,6 @@ const client = [
   {
     name: 'Academy',
     path: '/academy',
-  },
-  {
-    name: 'Logout',
-    path: '/logout',
   },
 ]
 const creator = [
@@ -95,51 +88,76 @@ const admin = [
 </script>
 
 <template>
-<!--  <header>-->
-<!--    <div class="wrapper">-->
-
-<!--      <nav class="bg-white border-gray-200 ">-->
-<!--        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">-->
-<!--          <RouterLink to="/"  class="flex items-center">-->
-<!--            <img src="../assets/wisdom_logo.png" class="mr-3 h-16" alt="Flowbite Logo" />-->
-<!--          </RouterLink>-->
-<!--          <div class="flex md:order-2">-->
-<!--            <RouterLink to="/login" type="button" class="text-white bg-[#003333] font-bold hover:bg-[#003333] focus:outline-none rounded-2xl text-md px-4 py-2 text-center mr-3 md:mr-0">-->
-<!--              Connect-->
-<!--            </RouterLink>-->
-<!--            <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-cta" aria-expanded="false">-->
-<!--              <span class="sr-only">Open main menu</span>-->
-<!--              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>-->
-<!--            </button>-->
-<!--          </div>-->
-<!--          <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">-->
-<!--            <ul class="flex flex-col gap-6 font-bold text-[#003333] p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">-->
-<!--              <RouterLink v-if="authStore.user === null" v-for="link in guest" to="{{link.path}}" >{{ link.name }}</RouterLink>-->
-<!--&lt;!&ndash;              <RouterLink v_else v-for="link in guest" to="{{link.path}}">{{ link.name }}</RouterLink>&ndash;&gt;-->
-<!--              <RouterLink v-if="authStore.user" v-for="link in client" to="{{link.path}}">{{ link.name }}</RouterLink>-->
-<!--&lt;!&ndash;              <RouterLink v-if="authStore.user.ID === 2" v-for="link in creator" to="{{link.path}}">{{ link.name }}</RouterLink>&ndash;&gt;-->
-<!--&lt;!&ndash;              <RouterLink v-if="authStore.user.ID === 0" v-for="link in admin" to="{{link.path}}">{{ link.name }}</RouterLink>&ndash;&gt;-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </nav>-->
-<!--    </div>-->
-<!--  </header>-->
   <Navbar>
     <template #logo>
-      <RouterLink to="/"  class="flex items-center">
-        <img src="../assets/wisdom_logo.png" class="mr-3 h-16" alt="Flowbite Logo" />
+      <RouterLink to="/" class="flex items-center">
+        <img src="../assets/wisdom_logo.png" class="mr-3 h-16" alt="Flowbite Logo"/>
       </RouterLink>
-        <RouterLink to="/login" class="md:hidden flex ml-auto text-white bg-[#003333] font-bold hover:bg-[#003333] focus:outline-none rounded-2xl text-md px-4 py-2 text-center mr-3 md:mr-0">Connect</RouterLink>
+      <RouterLink v-if="!authStore.user" to="/login"
+                  class="md:hidden flex ml-auto text-white bg-[#003333] font-bold hover:bg-[#003333] focus:outline-none rounded-2xl text-md px-4 py-2 text-center mr-3 md:mr-0">
+        Connect
+      </RouterLink>
+      <Menu v-else as="div" class="relative ml-auto">
+        <div>
+          <MenuButton class="md:hidden flex  rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            <span class="sr-only">Open user menu</span>
+            <img v-if="!authStore.user.image" class="h-9 w-9 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+            <img v-else class="h-9 w-9 rounded-full" :src="authStore.user.image" alt="" />
+          </MenuButton>
+        </div>
+        <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+          <MenuItems class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Your Profile</a>
+            </MenuItem>
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Settings</a>
+            </MenuItem>
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign out</a>
+            </MenuItem>
+          </MenuItems>
+        </transition>
+      </Menu>
     </template>
-    <template #default="{isShowMenu}">
+    <template #default="{isShowMenu}" class="mx-auto">
       <NavbarCollapse :isShowMenu="isShowMenu">
-        <NavbarLink :class="'font-bold text-red-500 text-lg'+ link.style" v-if="authStore.user === null" v-for="link in guest" to="{{link.path}}">{{ link.name }}</NavbarLink>
-        <NavbarLink v-if="authStore.user" v-for="link in client" to="{{link.path}}">{{ link.name }}</NavbarLink>
+        <NavbarLink class="font-bold text-lg" v-if="!authStore.user" v-for="link in guest" to="{{link.path}}">
+          {{ link.name }}
+        </NavbarLink>
+        <NavbarLink class="font-bold text-lg" v-if="authStore.user" v-for="link in client" to="{{link.path}}">
+          {{ link.name }}
+        </NavbarLink>
       </NavbarCollapse>
     </template>
     <template #right-side>
-      <RouterLink to="/login" type="button" class="text-white bg-[#003333] font-bold hover:bg-[#003333] focus:outline-none rounded-2xl text-md px-4 py-2 text-center mr-3 md:mr-0">Connect</RouterLink>
+      <RouterLink v-if="!authStore.user" to="/login" type="button"
+                  class="text-white bg-[#003333] font-bold hover:bg-[#003333] focus:outline-none rounded-2xl text-md px-4 py-2 text-center mr-3 md:mr-0">
+        Connect
+      </RouterLink>
+      <Menu v-else as="div" class="ml-auto">
+        <div>
+          <MenuButton class="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+            <span class="sr-only">Open user menu</span>
+            <img v-if="!authStore.user.image" class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+            <img v-else class="h-9 w-9 rounded-full" :src="authStore.user.image" alt="" />
+          </MenuButton>
+        </div>
+        <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+          <MenuItems class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Your Profile</a>
+            </MenuItem>
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Settings</a>
+            </MenuItem>
+            <MenuItem v-slot="{ active }">
+              <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign out</a>
+            </MenuItem>
+          </MenuItems>
+        </transition>
+      </Menu>
+
     </template>
   </Navbar>
 </template>
