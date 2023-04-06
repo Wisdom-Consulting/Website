@@ -7,6 +7,7 @@ import Community from "@/views/Community.vue";
 import MySpace from "@/views/MySpace.vue";
 import Consulting from "@/views/Consulting.vue";
 import Dashboard from "@/views/Dashboard.vue";
+import Profile from "@/views/Profile.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -60,9 +61,10 @@ const router = createRouter({
       component: Dashboard
     },
     {
-      name: 'Logout',
-      path: '/logout',
-    },
+        name: 'Profile',
+        path: '/profile',
+        component: Profile
+    }
   ]
 })
 

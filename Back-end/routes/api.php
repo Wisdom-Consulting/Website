@@ -25,6 +25,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route for profile
+Route::middleware(['auth:sanctum'])->get('/profile', function (Request $request) {
+    return $request->user();
+});
+
 
 // Route ressource for users
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {

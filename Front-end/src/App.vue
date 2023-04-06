@@ -1,8 +1,8 @@
 <script setup>
 import {RouterView} from 'vue-router'
 import {onMounted} from "vue";
-import "./axios"
 import { useAuthStore} from "@/stores/Auth";
+import "./axios"
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 
