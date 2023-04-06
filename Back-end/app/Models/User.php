@@ -44,5 +44,46 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // define relationship with content
+    public function content()
+    {
+        return $this->hasMany(Content::class);
+    }
+
+    // define relationship with quiz
+    public function quiz()
+    {
+        return $this->hasMany(Quiz::class);
+    }
+
+    // define relationship with message
+    public function message()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    // define relationship with chat
+    public function chat()
+    {
+        return $this->hasMany(Chat::class);
+    }
+
+    // define relationship with chat participant
+    public function chatParticipant()
+    {
+        return $this->hasMany(ChatParticipant::class);
+    }
+
+    // define relationship with question
+    public function question()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+    // define relationship with answer
+    public function answer()
+    {
+        return $this->hasMany(Answer::class);
+    }
 
 }

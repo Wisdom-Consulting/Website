@@ -12,7 +12,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        return Content::all();
+        return Content::with('category')->with('user')->get();
     }
 
     /**

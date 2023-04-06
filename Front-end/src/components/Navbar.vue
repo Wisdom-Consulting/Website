@@ -6,9 +6,9 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import {onMounted} from "vue";
 const authStore = useAuthStore();
 
-onMounted ( async () => {
-  await authStore.getUser();
-})
+// onMounted ( async () => {
+//   await authStore.getUser();
+// })
 const guest = [
   {
     name: 'History',

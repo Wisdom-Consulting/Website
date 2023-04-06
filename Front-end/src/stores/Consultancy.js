@@ -3,15 +3,17 @@ import axios from 'axios'
 
 export const useConsultancyStore = defineStore('Consultancy', {
     state: () => ({
-        articles: []
+        articles: null,
     }),
     getters: {
-        getArticles: (state) => state.articles
+        content: (state) => state.articles
     },
     actions: {
         async getArticles() {
-            const response = await axios.get('/api/content');
+            const response = await axios.get('/content');
+            console.log(response.data)
             this.articles = response.data
+            console.log(this.articles)
         }
     }
 })

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Answer extends Model
 {
     use HasFactory;
+
+    // define relationship with question
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+    }
+
 }

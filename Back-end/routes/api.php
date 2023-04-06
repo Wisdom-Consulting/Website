@@ -38,10 +38,11 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 // Route for cloudinary signature
 Route::middleware(['auth:sanctum'])->get('/signature', cloudinary::class.'@getSignature');
 // Route resource for content
-Route::middleware(['auth:sanctum'])->resource('content', ContentController::class);
-//get content
-//Route::middleware(['auth:sanctum'])->get('/content', [ContentController::class, 'index']);
+//Route::middleware(['auth:sanctum'])->resource('content', ContentController::class);
 // Route resource for categories
+// get content
+Route::middleware(['auth:sanctum'])->get('/content', [ContentController::class, 'index']);
+
 Route::middleware(['auth:sanctum'])->resource('categories', CategoryController::class);
 // Route resource for quizzes
 Route::middleware(['auth:sanctum'])->resource('quizzes', QuizController::class);

@@ -13,6 +13,7 @@ const consultancyStore = useConsultancyStore()
 onMounted ( async () => {
   await authStore.getUser();
   await consultancyStore.getArticles();
+  console.log(consultancyStore.content)
 })
 
 </script>
