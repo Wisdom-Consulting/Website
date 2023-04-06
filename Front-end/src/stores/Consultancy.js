@@ -2,7 +2,16 @@ import {defineStore} from 'pinia'
 import axios from 'axios'
 
 export const useConsultancyStore = defineStore('Consultancy', {
-    state: () => ({}),
-    getters: {},
-    actions: {}
+    state: () => ({
+        articles: []
+    }),
+    getters: {
+        getArticles: (state) => state.articles
+    },
+    actions: {
+        async getArticles() {
+            const response = await axios.get('/api/content');
+            this.articles = response.data
+        }
+    }
 })

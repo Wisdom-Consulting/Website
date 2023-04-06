@@ -39,6 +39,8 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::middleware(['auth:sanctum'])->get('/signature', cloudinary::class.'@getSignature');
 // Route resource for content
 Route::middleware(['auth:sanctum'])->resource('content', ContentController::class);
+//get content
+//Route::middleware(['auth:sanctum'])->get('/content', [ContentController::class, 'index']);
 // Route resource for categories
 Route::middleware(['auth:sanctum'])->resource('categories', CategoryController::class);
 // Route resource for quizzes

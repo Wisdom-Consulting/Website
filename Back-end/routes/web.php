@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContentController;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,8 @@ Route::get('/', function () {
 //    return ['Laravel' => app()->version()];
     dd(request()->user());
 });
+
+Route::middleware(['auth:sanctum'])->get('/content', [ContentController::class, 'index']);
+
 
 require __DIR__.'/auth.php';

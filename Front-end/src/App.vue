@@ -5,11 +5,14 @@ import { useAuthStore} from "@/stores/Auth";
 import "./axios"
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
+import {useConsultancyStore} from "@/stores/Consultancy";
 
 const authStore = useAuthStore();
+const consultancyStore = useConsultancyStore()
 
 onMounted ( async () => {
   await authStore.getUser();
+  await consultancyStore.getArticles();
 })
 
 </script>
