@@ -38,7 +38,7 @@ const client = [
   },
   {
     name: 'Consulting',
-    path: '/contact',
+    path: '/consulting',
   },
   {
     name: 'Academy',

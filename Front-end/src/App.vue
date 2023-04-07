@@ -11,9 +11,12 @@ const authStore = useAuthStore();
 const consultancyStore = useConsultancyStore()
 
 onMounted ( async () => {
-  await authStore.getUser();
-  await consultancyStore.getArticles();
-  console.log(consultancyStore.content)
+  if (authStore.user === null) {
+    await authStore.getUser();
+  }
+  if (consultancyStore.content === null){
+    await consultancyStore.getArticles();
+  }
 })
 
 </script>
