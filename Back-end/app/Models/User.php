@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use LaravelArchivable\Archivable;
 use Spatie\Permission\Traits\HasRoles;
+use SpatiePermissionVue\Traits\RolesPermissionsToVue;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, Archivable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, Archivable, RolesPermissionsToVue;
 
     /**
      * The attributes that are mass assignable.

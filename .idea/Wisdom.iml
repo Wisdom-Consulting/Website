@@ -13,6 +13,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Back-end/vendor/cloudinary/transformation-builder-sdk" />
       <excludeFolder url="file://$MODULE_DIR$/Back-end/vendor/spatie/laravel-permission" />
       <excludeFolder url="file://$MODULE_DIR$/Back-end/vendor/joelbutcher/laravel-archivable" />
+      <excludeFolder url="file://$MODULE_DIR$/Back-end/vendor/geowrgetudor/laravel-spatie-permissions-vue" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

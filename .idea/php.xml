@@ -124,6 +124,7 @@
       <path value="$PROJECT_DIR$/Back-end/vendor/cloudinary/transformation-builder-sdk" />
       <path value="$PROJECT_DIR$/Back-end/vendor/spatie/laravel-permission" />
       <path value="$PROJECT_DIR$/Back-end/vendor/joelbutcher/laravel-archivable" />
+      <path value="$PROJECT_DIR$/Back-end/vendor/geowrgetudor/laravel-spatie-permissions-vue" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

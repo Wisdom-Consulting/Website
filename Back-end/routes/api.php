@@ -20,6 +20,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//public function handle($request, Closure $next, ...$permissions)
+//{
+//    $user = $request->user();
+//
+//    if (!$user) {
+//        return response()->json(['error' => 'Unauthenticated.'], 401);
+//    }
+//
+//    foreach ($permissions as $permission) {
+//        if (!$user->can($permission)) {
+//            return response()->json(['error' => 'Unauthorized.'], 403);
+//        }
+//    }
+//
+//    return $next($request);
+//}
+
 // Load landing page
 Route::get('/', function () {
     return view('welcome');
