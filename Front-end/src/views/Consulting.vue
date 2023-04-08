@@ -1,6 +1,6 @@
 <script setup>
 import {useConsultancyStore} from "@/stores/Consultancy";
-import Search from "@/views/Component/Search.vue";
+import Search from "@/components/Search.vue";
 
 const consultancyStore = useConsultancyStore()
 

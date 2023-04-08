@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia'
 import axios from 'axios'
+import {useConsultancyStore} from "@/stores/Consultancy";
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -25,6 +26,7 @@ export const useAuthStore = defineStore('auth', {
                 });
                 if (response.status === 204) {
                     await this.getUser()
+                    await useConsultancyStore().getArticles()
                     await this.router.push('/')
                 } else {
                     this.authError = response.data.message
@@ -48,6 +50,7 @@ export const useAuthStore = defineStore('auth', {
                 })
                 if (status === 204) {   // 204 is the status code for successful registration
                     await this.getUser()
+                    await useConsultancyStore().getArticles()
                     await this.router.push('/')
                 }
             } catch (error) {
