@@ -5,16 +5,19 @@ import {useConsultancyStore} from "@/stores/Consultancy";
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         authUser: null,
+        authRole: null,
         authError: ''
     }),
     getters: {
         user: (state) => state.authUser,
+        role: (state) => state.authRole,
         errors: (state) => state.authError
     },
     actions: {
         async getUser() {
             const response = await axios.get("/api/user");
-            this.authUser = response.data
+            this.authUser = response.data.user
+            this.authRole = response.data.role
         },
         async logIn(form) {
             this.authError = null;

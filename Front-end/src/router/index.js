@@ -8,6 +8,7 @@ import MySpace from "@/views/MySpace.vue";
 import Consulting from "@/views/Consulting.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import Profile from "@/views/Profile.vue";
+import NotFound from "@/views/NotFound.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -64,6 +65,11 @@ const router = createRouter({
         name: 'Profile',
         path: '/profile',
         component: Profile
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: NotFound
     }
   ]
 })

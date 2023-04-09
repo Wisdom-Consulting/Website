@@ -35,6 +35,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        $user->assignRole('user');
 
         return response()->noContent();
     }

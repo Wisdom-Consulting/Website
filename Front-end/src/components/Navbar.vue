@@ -1,9 +1,8 @@
 <script setup>
 import {RouterLink} from 'vue-router'
 import {useAuthStore} from '@/stores/Auth'
-import {Navbar, NavbarCollapse, NavbarLink} from 'flowbite-vue'
+import {Navbar, NavbarCollapse} from 'flowbite-vue'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import {onMounted} from "vue";
 const authStore = useAuthStore();
 
 // onMounted ( async () => {
@@ -62,14 +61,10 @@ const creator = [
     name: 'Academy',
     path: '/academy',
   },
-  {
-    name: 'Logout',
-    path: '/logout',
-  },
 ]
 const admin = [
   {
-    name: 'Community',
+    name: 'sidati',
     path: '/community',
   },
   {
@@ -83,10 +78,6 @@ const admin = [
   {
     name: 'Academy',
     path: '/academy',
-  },
-  {
-    name: 'Logout',
-    path: '/logout',
   },
 ]
 </script>
@@ -135,7 +126,13 @@ const admin = [
         <RouterLink class="font-bold text-lg" v-if="!authStore.user" v-for="link in guest" :to="link.path">
           {{ link.name }}
         </RouterLink>
-        <RouterLink class="font-bold text-lg" v-if="authStore.user" v-for="link in client" :to="link.path">
+        <RouterLink class="font-bold text-lg" v-if="authStore.user && authStore.role[0] === 'user'" v-for="link in client" :to="link.path">
+          {{ link.name }}
+        </RouterLink>
+        <RouterLink class="font-bold text-lg" v-if="authStore.user && authStore.role[0] === 'admin'" v-for="link in admin" :to="link.path">
+          {{ link.name }}
+        </RouterLink>
+        <RouterLink class="font-bold text-lg" v-if="authStore.user && authStore.role[0] === 'consultant'" v-for="link in creator" :to="link.path">
           {{ link.name }}
         </RouterLink>
       </NavbarCollapse>
