@@ -6,11 +6,11 @@ import "./axios"
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import {useConsultancyStore} from "@/stores/Consultancy";
-import {useDashboardStore} from "@/stores/Dashboard";
+import {usePostStore} from "@/stores/Post";
 
 const authStore = useAuthStore();
 const consultancyStore = useConsultancyStore()
-const dashboardStore = useDashboardStore()
+const PostStore = usePostStore()
 
 onMounted ( async () => {
   if (authStore.user === null) {
@@ -20,6 +20,8 @@ onMounted ( async () => {
     await consultancyStore.getArticles();
   }
     // await dashboardStore.assignRoleToUser('admin', '65');
+  await PostStore.getPosts();
+  console.log(PostStore.posts)
 })
 
 </script>

@@ -20,8 +20,8 @@ class CommentFactory extends Factory
     {
         return [
             'body' => $this->faker->text,
-            'user_id' => User::random()->id,
-            'post_id' => Post::random()->id,
+            'user_id' => User::all()->random()->id,
+            'post_id' => Post::all()->random()->id,
         ];
     }
 }

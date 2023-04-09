@@ -4,6 +4,7 @@ use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\cloudinary;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Models\User;
@@ -51,11 +52,8 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 // Route for cloudinary signature
 Route::middleware(['auth:sanctum'])->get('/signature', cloudinary::class.'@getSignature');
 // Route resource for content
-//Route::middleware(['auth:sanctum'])->resource('content', ContentController::class);
+Route::middleware(['auth:sanctum'])->resource('content', ContentController::class);
 // Route resource for categories
-// get content
-Route::middleware(['auth:sanctum'])->get('/content', [ContentController::class, 'index']);
-
 Route::middleware(['auth:sanctum'])->resource('categories', CategoryController::class);
 // Route resource for quizzes
 Route::middleware(['auth:sanctum'])->resource('quizzes', QuizController::class);
@@ -63,5 +61,7 @@ Route::middleware(['auth:sanctum'])->resource('quizzes', QuizController::class);
 Route::middleware(['auth:sanctum'])->resource('questions', QuestionController::class);
 // Route resource for answers
 Route::middleware(['auth:sanctum'])->resource('answers', AnswerController::class);
+// Route resource for posts
+Route::middleware(['auth:sanctum'])->resource('posts', PostController::class);
 
 

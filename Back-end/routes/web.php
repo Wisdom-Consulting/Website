@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContentController;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 //    return ['Laravel' => app()->version()];
-    dd(request()->user());
+    dd(Post::with('likes')->with('user')->with('comments')->get());
 });
 
 Route::middleware(['auth:sanctum'])->get('/content', [ContentController::class, 'index']);

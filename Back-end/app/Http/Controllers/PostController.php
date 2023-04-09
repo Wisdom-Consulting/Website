@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return Post::with('likes')->with('user')->with('comments')->get();
     }
 
     /**
@@ -29,7 +29,16 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+
+        $validated = $request->validated(
+            [
+                'title' => 'required',
+                'body' => 'required',
+                'user_id' => 'required',
+            ]
+        );
+        $post = Post::create($validated);
+        return $post;
     }
 
     /**
@@ -37,7 +46,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return $post;
     }
 
     /**
@@ -45,7 +54,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+
     }
 
     /**
@@ -53,7 +62,15 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $validated = $request->validated(
+            [
+                'title' => 'required',
+                'body' => 'required',
+                'user_id' => 'required',
+            ]
+        );
+        $post->update($validated);
+        return $post;
     }
 
     /**
@@ -61,6 +78,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return $post;
     }
 }

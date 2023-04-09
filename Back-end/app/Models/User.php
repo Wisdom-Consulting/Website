@@ -87,4 +87,22 @@ class User extends Authenticatable
         return $this->hasMany(Answer::class);
     }
 
+    // define relationship with comment
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    // define relationship with like
+    public function like()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    // define relationship with post
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
+
 }
