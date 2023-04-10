@@ -3,6 +3,8 @@ import {createPinia} from 'pinia'
 import './axios'
 import App from './App.vue'
 import router from './router'
+// import ReadMore from 'vue-read-more';
+
 
 import './index.css'
 import './assets/tailwind.css'
@@ -28,6 +30,7 @@ const app = createApp(App)
 
 app.use(pinia)
 app.use(router)
+// app.use(ReadMore);
 app.component("font-awesome-icon", FontAwesomeIcon)
 
 app.mount('#app')

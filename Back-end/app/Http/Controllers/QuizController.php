@@ -12,23 +12,35 @@ class QuizController extends Controller
      */
     public function index()
     {
-        //
+        return Quiz::with('question.answer')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        // Add quiz
+        $quiz = Quiz::create([
+            'user_id' => $request->user_id,
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+        // Add questions
+        foreach ($request->questions as $question) {
+            $quiz->question()->create([
+                'body' => $question['body'],
+            ]);
+            // Add answers
+            foreach ($question['answers'] as $answer) {
+                $quiz->question->last()->answer()->create([
+                    'body' => $answer['body'],
+                    'is_correct' => $answer['is_correct'],
+                ]);
+            }
+        }
+        return $quiz;
     }
 
     /**
@@ -36,23 +48,34 @@ class QuizController extends Controller
      */
     public function show(Quiz $quiz)
     {
-        //
+        return $quiz;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Quiz $quiz)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Quiz $quiz)
     {
-        //
+        // Update quiz
+        $quiz->update([
+            'user_id' => $request->user_id,
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+        // Update questions
+        foreach ($request->questions as $question) {
+            $quiz->question()->update([
+                'body' => $question['body'],
+            ]);
+            // Update answers
+            foreach ($question['answers'] as $answer) {
+                $quiz->question->last()->answer()->update([
+                    'body' => $answer['body'],
+                    'is_correct' => $answer['is_correct'],
+                ]);
+            }
+        }
     }
 
     /**
@@ -60,6 +83,7 @@ class QuizController extends Controller
      */
     public function destroy(Quiz $quiz)
     {
-        //
+        // Delete quiz
+        $quiz->delete();
     }
 }
