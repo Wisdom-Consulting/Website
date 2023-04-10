@@ -12,15 +12,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Question::with('answer')->get();
     }
 
     /**
@@ -28,23 +20,21 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        // Add questions
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Question $question)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Question $question)
-    {
-        //
+        foreach ($request->questions as $question) {
+            $request->question()->create([
+                'body' => $question['body'],
+            ]);
+            // Add answers
+            foreach ($question['answers'] as $answer) {
+                $request->question->last()->answer()->create([
+                    'body' => $answer['body'],
+                    'is_correct' => $answer['is_correct'],
+                ]);
+            }
+        }
+        return $request;
     }
 
     /**
@@ -52,7 +42,18 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        // Update question
+        $question->update([
+            'body' => $request->body,
+        ]);
+        // Update answers
+        foreach ($request->answers as $answer) {
+            $question->answer()->update([
+                'body' => $answer['body'],
+                'is_correct' => $answer['is_correct'],
+            ]);
+        }
+        return $question;
     }
 
     /**
@@ -60,6 +61,9 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        // Delete question
+        $question->delete();
+        // Delete answers
+        $question->answer()->delete();
     }
 }

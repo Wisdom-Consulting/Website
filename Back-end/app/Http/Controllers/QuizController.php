@@ -21,6 +21,16 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
+        $fields = $request->validate([
+            'user_id' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+            'questions' => 'required',
+            'questions.*.body' => 'required',
+            'questions.*.answers' => 'required',
+            'questions.*.answers.*.body' => 'required',
+            'questions.*.answers.*.is_correct' => 'required',
+        ]);
         // Add quiz
         $quiz = Quiz::create([
             'user_id' => $request->user_id,
@@ -57,6 +67,16 @@ class QuizController extends Controller
      */
     public function update(Request $request, Quiz $quiz)
     {
+        $fields = $request->validate([
+            'user_id' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+            'questions' => 'required',
+            'questions.*.body' => 'required',
+            'questions.*.answers' => 'required',
+            'questions.*.answers.*.body' => 'required',
+            'questions.*.answers.*.is_correct' => 'required',
+        ]);
         // Update quiz
         $quiz->update([
             'user_id' => $request->user_id,

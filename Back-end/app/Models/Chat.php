@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Chat extends Model
 {
     use HasFactory;
+
+    // Define the relationship with the message model
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    // Define the relationship with the chat participant model
+    public function participants()
+    {
+        return $this->hasMany(ChatParticipant::class);
+    }
 }

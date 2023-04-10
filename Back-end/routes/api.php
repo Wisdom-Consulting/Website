@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\cloudinary;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContentController;
@@ -72,5 +73,8 @@ Route::middleware(['auth:sanctum'])->resource('posts', PostController::class);
 Route::middleware(['auth:sanctum'])->resource('comments', CommentController::class);
 // Route resource for likes
 Route::middleware(['auth:sanctum'])->resource('likes', LikeController::class);
+// Route resource for chat
+Route::middleware(['auth:sanctum'])->resource('chats', ChatController::class);
 
-
+// route for chat
+//Route::middleware(['auth:sanctum'])->get('/chat', [ChatController::class, 'index']);

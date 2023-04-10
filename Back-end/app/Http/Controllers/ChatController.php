@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
@@ -12,7 +13,9 @@ class ChatController extends Controller
      */
     public function index()
     {
-        //
+        $userId = Auth::id();
+        // Retrieve all the chat sessions that contain the user ID
+        return Chat::whereHas('participants', function($query) use ($userId) {$query->where('user_id', $userId);})->with('participants')->get();
     }
 
     /**

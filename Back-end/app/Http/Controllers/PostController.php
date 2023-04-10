@@ -13,15 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::with('likes')->with('comments')->with('user')->get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Post::with('likes.user')->with('comments.user')->get();
     }
 
     /**
@@ -37,8 +29,7 @@ class PostController extends Controller
                 'user_id' => 'required',
             ]
         );
-        $post = Post::create($validated);
-        return $post;
+        return Post::create($validated);
     }
 
     /**
@@ -50,22 +41,14 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Post $post)
-    {
-
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
         $validated = $request->validated(
             [
-                'title' => 'required',
-                'body' => 'required',
+                'title' => '',
+                'body' => '',
                 'user_id' => 'required',
             ]
         );
