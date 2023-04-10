@@ -9,6 +9,13 @@ class Content extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'body',
+        'category_id',
+        'user_id',
+    ];
+
     // define relationship with user
     public function user()
     {

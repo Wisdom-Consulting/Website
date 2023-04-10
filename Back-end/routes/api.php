@@ -7,6 +7,7 @@ use App\Http\Controllers\cloudinary;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
@@ -75,6 +76,6 @@ Route::middleware(['auth:sanctum'])->resource('comments', CommentController::cla
 Route::middleware(['auth:sanctum'])->resource('likes', LikeController::class);
 // Route resource for chat
 Route::middleware(['auth:sanctum'])->resource('chats', ChatController::class);
+// Route resource for messages
+Route::middleware(['auth:sanctum'])->resource('messages', MessageController::class);
 
-// route for chat
-//Route::middleware(['auth:sanctum'])->get('/chat', [ChatController::class, 'index']);

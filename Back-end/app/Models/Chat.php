@@ -15,9 +15,10 @@ class Chat extends Model
         return $this->hasMany(Message::class);
     }
 
-    // Define the relationship with the chat participant model
-    public function participants()
+    // Define the relationship with the user model
+
+    public function users()
     {
-        return $this->hasMany(ChatParticipant::class);
+        return $this->belongsToMany(User::class, 'chat_participants', 'chat_id', 'user_id');
     }
 }

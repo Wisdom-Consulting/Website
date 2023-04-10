@@ -22,7 +22,7 @@ class MessageFactory extends Factory
         return [
             'chat_id' => Chat::all()->random()->id,
             'message' => $this->faker->sentence,
-            'sender' => User::all()->random()->id,
+            'user_id' => User::all()->random()->id,
         ];
     }
 }

@@ -66,14 +66,9 @@ class User extends Authenticatable
     // define relationship with chat
     public function chat()
     {
-        return $this->hasMany(Chat::class);
+        return $this->belongsToMany(Chat::class, 'chat_participants', 'user_id', 'chat_id');
     }
 
-    // define relationship with chat participant
-    public function chatParticipant()
-    {
-        return $this->hasMany(ChatParticipant::class);
-    }
 
     // define relationship with question
     public function question()

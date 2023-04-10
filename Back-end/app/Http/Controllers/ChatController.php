@@ -15,23 +15,16 @@ class ChatController extends Controller
     {
         $userId = Auth::id();
         // Retrieve all the chat sessions that contain the user ID
-        return Chat::whereHas('participants', function($query) use ($userId) {$query->where('user_id', $userId);})->with('participants')->get();
+        return Chat::whereHas('users', function($query) use ($userId) {$query->where('user_id', $userId);})->has('messages')->with(['messages' => function($query) {
+            $query->select('id', 'chat_id', 'user_id', 'message', 'created_at')
+                ->with('user:id,name');
+        }])->get();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -63,6 +56,7 @@ class ChatController extends Controller
      */
     public function destroy(Chat $chat)
     {
-        //
+        // Delete the chat session
+        $chat->delete();
     }
 }

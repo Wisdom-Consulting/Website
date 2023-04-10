@@ -20,7 +20,7 @@ class ChatParticipantFactory extends Factory
     public function definition(): array
     {
         return [
-            'chat_session_id' => Chat::all()->random()->id,
+            'chat_id' => Chat::all()->random()->id,
             'user_id' => User::all()->random()->id,
         ];
     }

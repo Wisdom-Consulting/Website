@@ -16,19 +16,17 @@ class ContentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'category_id' => 'required',
+            'user_id' => 'required',
+        ]);
+        return Content::create($request->all());
     }
 
     /**
@@ -36,15 +34,7 @@ class ContentController extends Controller
      */
     public function show(Content $content)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Content $content)
-    {
-        //
+        return Content::with('category')->with('user')->get();
     }
 
     /**
@@ -52,7 +42,14 @@ class ContentController extends Controller
      */
     public function update(Request $request, Content $content)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'category_id' => 'required',
+            'user_id' => 'required',
+        ]);
+        $content->update($request->all());
+        return $content;
     }
 
     /**
@@ -60,6 +57,6 @@ class ContentController extends Controller
      */
     public function destroy(Content $content)
     {
-        //
+        return $content->delete();
     }
 }
