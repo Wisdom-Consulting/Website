@@ -15,11 +15,21 @@ class ChatController extends Controller
     {
         $userId = Auth::id();
         // Retrieve all the chat sessions that contain the user ID
-        return Chat::whereHas('users', function($query) use ($userId) {$query->where('user_id', $userId);})->has('messages')->with(['messages' => function($query) {
+        return Chat::whereHas('users', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->has('messages')->with([
+            'messages' => function ($query) {
             $query->select('id', 'chat_id', 'user_id', 'message', 'created_at')
-                ->with('user:id,name');
-        }])->get();
+                ->with('user:id,name,image')
+                ->orderBy('created_at', 'desc');
+        },
+            'users' => function ($query) use ($userId) {
+                $query->where('user_id', '<>', $userId)
+                    ->select('name', 'image');
+            }
+        ])->get();
     }
+
     /**
      * Store a newly created resource in storage.
      */

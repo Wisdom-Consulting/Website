@@ -7,10 +7,12 @@ import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import {useConsultancyStore} from "@/stores/Consultancy";
 import {usePostStore} from "@/stores/Post";
+import {useInboxStore} from "@/stores/Inbox";
 
 const authStore = useAuthStore();
 const consultancyStore = useConsultancyStore()
 const PostStore = usePostStore()
+const InboxStore = useInboxStore()
 
 onMounted ( async () => {
   if (authStore.user === null) {
@@ -22,6 +24,9 @@ onMounted ( async () => {
     // await dashboardStore.assignRoleToUser('admin', '65');
   await PostStore.getPosts();
   console.log(PostStore.posts)
+
+  await InboxStore.getChats();
+  console.log(InboxStore.chats)
 })
 
 </script>
