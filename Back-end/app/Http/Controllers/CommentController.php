@@ -22,33 +22,31 @@ class CommentController extends Controller
     public function store(StoreCommentRequest $request)
     {
         // Add comment
+        $user = auth()->user();
         $comment = Comment::create($request->validated(
             [
-                'body',
-                'user_id',
-                'post_id'
+                'body' => $request->body,
+                'user_id' => $user->id,
+                'post_id' => $request->post_id,
             ]
         ));
     }
 
-    /**
-     * Display the specified resource.
-     */
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateCommentRequest $request, Comment $comment)
     {
-        //
+        // Update comment
+        $user = auth()->user();
+        $comment->update($request->validated(
+            [
+                'body' => '',
+                'user_id' => '',
+                'post_id' => '',
+            ]
+        ));
     }
 
     /**
@@ -56,6 +54,7 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        // Delete comment
+        return $comment->delete();
     }
 }

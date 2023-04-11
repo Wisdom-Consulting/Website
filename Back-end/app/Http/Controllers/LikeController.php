@@ -29,7 +29,19 @@ class LikeController extends Controller
      */
     public function store(StoreLikeRequest $request)
     {
-        //
+//        dd($request->all());
+        // Validate the request data against the necessary rules
+        $validatedData = $request->validate([
+            'post_id' => 'required|exists:posts,id',
+        ]);
+
+        // Set the user_id value to the authenticated user's ID
+        $validatedData['user_id'] = auth()->user()->id;
+
+        // Create a new Like instance using the validated data
+        $like = Like::create($validatedData);
+
+        return $like;
     }
 
     /**
@@ -41,26 +53,10 @@ class LikeController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Like $like)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateLikeRequest $request, Like $like)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Like $like)
     {
-        //
+        return $like->delete();
     }
 }

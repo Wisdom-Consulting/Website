@@ -52,9 +52,10 @@ class User extends Authenticatable
     }
 
     // define relationship with quiz
-    public function quiz()
+    public function quizzes()
     {
-        return $this->hasMany(Quiz::class);
+        return $this->belongsToMany(Quiz::class, 'user_quiz_scores', 'user_id', 'quiz_id')
+            ->withPivot('score');
     }
 
     // define relationship with message

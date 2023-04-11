@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
+use App\Models\Question;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 
@@ -39,18 +41,18 @@ class QuizController extends Controller
         ]);
         // Add questions
         foreach ($request->questions as $question) {
-            $quiz->question()->create([
+            $newQuestion = $quiz->question()->create([
                 'body' => $question['body'],
             ]);
-            // Add answers
+
             foreach ($question['answers'] as $answer) {
-                $quiz->question->last()->answer()->create([
+                $newQuestion->answer()->create([
                     'body' => $answer['body'],
                     'is_correct' => $answer['is_correct'],
                 ]);
             }
         }
-        return $quiz;
+        return $quiz->load('question.answer');
     }
 
     /**
@@ -67,35 +69,41 @@ class QuizController extends Controller
      */
     public function update(Request $request, Quiz $quiz)
     {
+//        $question_ids = $quiz->question->pluck('id')->toArray();
         $fields = $request->validate([
             'user_id' => 'required',
             'title' => 'required',
             'body' => 'required',
             'questions' => 'required',
+            'questions.*.id' => 'required|exists:questions,id',
             'questions.*.body' => 'required',
             'questions.*.answers' => 'required',
+            'questions.*.answers.*.id' => 'required|exists:answers,id',
+//            'questions.*.answers.*.id' => 'required',
             'questions.*.answers.*.body' => 'required',
             'questions.*.answers.*.is_correct' => 'required',
         ]);
         // Update quiz
         $quiz->update([
-            'user_id' => $request->user_id,
-            'title' => $request->title,
             'body' => $request->body,
         ]);
-        // Update questions
+
         foreach ($request->questions as $question) {
-            $quiz->question()->update([
+            $q = $quiz->question()->findOrFail($question['id']);
+            $q->update([
                 'body' => $question['body'],
             ]);
-            // Update answers
+
             foreach ($question['answers'] as $answer) {
-                $quiz->question->last()->answer()->update([
+                $a = $q->answer()->findOrFail($answer['id']);
+                $a->update([
                     'body' => $answer['body'],
                     'is_correct' => $answer['is_correct'],
                 ]);
             }
         }
+
+        return $quiz->load('question.answer');
     }
 
     /**

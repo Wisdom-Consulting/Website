@@ -9,6 +9,12 @@ class Answer extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'question_id',
+        'body',
+        'is_correct',
+    ];
+
     // define relationship with question
     public function question()
     {
