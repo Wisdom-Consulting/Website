@@ -21,11 +21,11 @@ class ChatController extends Controller
             'messages' => function ($query) {
             $query->select('id', 'chat_id', 'user_id', 'message', 'created_at')
                 ->with('user:id,name,image')
-                ->orderBy('created_at', 'desc');
+                ->orderBy('created_at', 'asc');
         },
             'users' => function ($query) use ($userId) {
                 $query->where('user_id', '<>', $userId)
-                    ->select('name', 'image');
+                    ->select('user_id','name', 'image');
             }
         ])->get();
     }

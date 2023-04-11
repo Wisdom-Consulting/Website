@@ -1,8 +1,8 @@
 <script setup>
-import { defineProps } from 'vue'
+import {defineProps, ref} from 'vue'
 import {useInboxStore} from "@/stores/Inbox";
 import ChatBox from "@/components/ChatBox.vue";
-
+const selectedChat = ref (null)
 const inboxStore = useInboxStore()
 
 </script>
@@ -17,11 +17,11 @@ const inboxStore = useInboxStore()
       </div>
 
       <!-- Contacts -->
-      <div v-for="chat in inboxStore.chats" @click="inboxStore.selectChat(chat)" class="flex-1 overflow-auto bg-grey-lighter">
+      <div v-for="chat in inboxStore.chats" @click="selectedChat = chat" class="overflow-auto bg-grey-lighter">
         <div class="flex cursor-pointer items-center px-3 bg-grey-light">
           <div>
             <img class="h-12 w-12 rounded-full"
-                 :src="chat.users[0].image"/>
+                 :src="chat.users[0].image" alt=""/>
           </div>
           <div class="ml-4 flex-1 border-b py-4 border-grey-lighter">
             <div class="flex justify-between items-bottom">
@@ -33,12 +33,12 @@ const inboxStore = useInboxStore()
               </p>
             </div>
             <p class="mt-1 text-sm text-grey-dark">
-              {{chat.messages[0].message.slice(0, 30)}}...
+              {{chat.last_message.message.slice(0, 30)}}...
             </p>
           </div>
         </div>
       </div>
     </div>
-    <ChatBox/>
+    <ChatBox :chat="selectedChat"/>
   </div>
 </template>

@@ -42,7 +42,7 @@ class MessageController extends Controller
 //        ]);
 //        return $message;
 
-        $senderId = $request->user_id;
+        $senderId = auth()->user()->id;
         $receiverId = $request->receiver_id;
 
         // Check if a chat already exists with both participants
