@@ -3,7 +3,9 @@ import {createPinia} from 'pinia'
 import './axios'
 import App from './App.vue'
 import router from './router'
-// import ReadMore from 'vue-read-more';
+import Toast from "vue-toastification";
+// Import the CSS or use your own!
+import "vue-toastification/dist/index.css";
 
 
 import './index.css'
@@ -30,6 +32,11 @@ const app = createApp(App)
 
 app.use(pinia)
 app.use(router)
+
+const options = {
+    // You can set your default options here
+};
+app.use(Toast, options);
 // app.use(ReadMore);
 app.component("font-awesome-icon", FontAwesomeIcon)
 

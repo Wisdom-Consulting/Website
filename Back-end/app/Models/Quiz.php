@@ -13,6 +13,8 @@ class Quiz extends Model
         'user_id',
         'body',
         'title',
+        'quiz_fields_id',
+        'level_id'
     ];
 
     public function users()
@@ -29,5 +31,15 @@ class Quiz extends Model
     public function answer()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function quiz_field()
+    {
+        return $this->belongsTo(QuizField::class);
+    }
+
+    public function level()
+    {
+        return $this->belongsTo(Level::class);
     }
 }

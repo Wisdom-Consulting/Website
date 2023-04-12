@@ -11,6 +11,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\QuizFieldController;
 use App\Http\Controllers\UserQuizScoreController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -62,6 +63,8 @@ Route::middleware(['auth:sanctum'])->resource('content', ContentController::clas
 Route::middleware(['auth:sanctum'])->resource('categories', CategoryController::class);
 // Route resource for quizzes
 Route::middleware(['auth:sanctum'])->resource('quizzes', QuizController::class);
+// Route resource for quiz_fields
+Route::middleware(['auth:sanctum'])->resource('quiz_fields', QuizFieldController::class);
 // Route resource for questions
 Route::middleware(['auth:sanctum'])->resource('questions', QuestionController::class);
 // Route resource for answers

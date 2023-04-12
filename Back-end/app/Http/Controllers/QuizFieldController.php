@@ -12,23 +12,19 @@ class QuizFieldController extends Controller
      */
     public function index()
     {
-        //
+        return QuizField::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $fields = $request->validate([
+            'name' => 'required',
+        ]);
+        return QuizField::create($fields);
     }
 
     /**
@@ -36,23 +32,17 @@ class QuizFieldController extends Controller
      */
     public function show(QuizField $quizField)
     {
-        //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(QuizField $quizField)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, QuizField $quizField)
     {
-        //
+        $fields = $request->validate([
+            'name' => 'required',
+        ]);
+        $quizField->update($fields);
+        return $quizField;
     }
 
     /**
@@ -60,6 +50,7 @@ class QuizFieldController extends Controller
      */
     public function destroy(QuizField $quizField)
     {
-        //
+        $quizField->delete();
+        return response()->json(null, 204);
     }
 }

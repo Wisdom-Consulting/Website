@@ -14,7 +14,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return Quiz::with('question.answer')->get();
+        return Quiz::with('quiz_field')->with('level')->with('question.answer')->get();
     }
 
 
@@ -27,6 +27,8 @@ class QuizController extends Controller
             'user_id' => 'required',
             'title' => 'required',
             'body' => 'required',
+            'quiz_fields_id' => 'required|exists:quiz_fields,id',
+            'level_id' => 'required|exists:levels,id',
             'questions' => 'required',
             'questions.*.body' => 'required',
             'questions.*.answers' => 'required',
@@ -38,6 +40,8 @@ class QuizController extends Controller
             'user_id' => $request->user_id,
             'title' => $request->title,
             'body' => $request->body,
+            'quiz_fields_id' => $request->quiz_fields_id,
+            'level_id' => $request->level_id,
         ]);
         // Add questions
         foreach ($request->questions as $question) {
