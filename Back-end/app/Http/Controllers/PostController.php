@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::with('likes.user')->with('comments.user')->get();
+        return Post::with('likes.user')->get();
     }
 
     /**
@@ -37,7 +37,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post;
+        return $post->load('likes.user');
     }
 
     /**

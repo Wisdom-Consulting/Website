@@ -2,15 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\Model;
 use App\Models\Quiz;
-use App\Models\QuizField;
+use App\Models\Score;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Quiz>
+ * @extends Factory<Score>
  */
-class QuizFactory extends Factory
+class UserQuizScoreFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,10 +21,9 @@ class QuizFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence,
-            'body' => $this->faker->paragraph,
             'user_id' => User::all()->random()->id,
-            'quiz_fields_id' => QuizField::all()->random()->id,
+            'quiz_id' => Quiz::all()->random()->id,
+            'score' => $this->faker->numberBetween(1, 100),
         ];
     }
 }

@@ -43,7 +43,7 @@ Route::middleware(['auth:sanctum'])->post('/dashboard/assign-role', function(Req
     $role = $request->role;
     $user->syncRoles($role);
 
-    return response()->json(['message' => 'Role assigned successfully.']);
+    return response()->json(['message' => 'Role assigned successfully ['. $role.']']);
 });
 
 // Route ressource for users

@@ -13,7 +13,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        // Load comments by post
+        $postId = request()->post_id;
+        return Comment::where('post_id', $postId)->with('user:id,name,image')->get();
     }
 
     /**
