@@ -10,7 +10,7 @@ export const useInboxStore = defineStore('Inbox', {
     getters: {
         chats: (state) => state.inbox,
         chat: (state) => state.messages,
-        selected: (state) => state.selectedChat,
+        selected: (state) => state.selectedChat
     },
     actions: {
         async getChats() {
@@ -18,18 +18,21 @@ export const useInboxStore = defineStore('Inbox', {
             this.inbox = response.data
             console.log(response.data)
         },
-        selectChat(chat) {
+        async getMessages(chat) {
+            const response = await axios.get(`/api/messages/?receiver_id=${chat.users[0].user_id}`)
             this.selectedChat = chat
+            this.messages = response.data
+            console.log(response.data)
         },
         async sendMessage(message, chat) {
+            console.log(message, chat)
             const response = await axios.post('/api/messages', {
                 message: message,
                 receiver_id: chat.users[0].user_id
             })
-            this.inbox.find((c) => c.id === chat.id).messages.push({
+            this.messages.push({
                 message: message,
                 created_at: new Date(),
-                user: authStore.user
             })
         }
     }

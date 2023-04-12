@@ -9,8 +9,7 @@ import ForYou from "@/components/ForYou.vue";
 
 <template>
   <main>
-    <Sea
-        rch/>
+    <Search/>
     <ForYou/>
     <Consultants/>
     <Articles/>

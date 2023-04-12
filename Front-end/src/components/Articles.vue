@@ -1,6 +1,7 @@
 <script></script>
 
 <template>
+  <Suspense>
   <h1 class="mt-10 font-bold ml-10 text-[30px] text-wrap text-[#003333] flex mx-auto justify-start">All articles</h1>
   <div class="flex flex-row flex-wrap gap-4 justify-center">
     <div class="bg-white shadow-lg rounded-lg w-[260px] h-fit p-6 flex flex-col gap-2">
@@ -124,4 +125,5 @@
       </div>
     </div>
   </div>
+  </Suspense>
 </template>

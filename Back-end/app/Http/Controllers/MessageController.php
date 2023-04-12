@@ -13,15 +13,15 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        // Load user messages by chat
+        $userId = auth()->user()->id;
+        $receiverId = request()->receiver_id;
+        // Retrieve a specific chat session that contains the user ID and the receiver ID
+        $chat = Chat::whereHas('users', function ($query) use ($userId, $receiverId) {
+            $query->whereIn('user_id', [$userId, $receiverId]);
+        }, '=', 2)->first();
+        // Retrieve all the messages from the chat session
+        return $chat->messages()->with('user:id,name,image')->get();
     }
 
     /**

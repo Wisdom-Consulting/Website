@@ -22,8 +22,7 @@ onMounted ( async () => {
     await consultancyStore.getArticles();
   }
     // await dashboardStore.assignRoleToUser('admin', '65');
-  await PostStore.getPosts();
-  console.log(PostStore.posts)
+
 
   await InboxStore.getChats();
   console.log(InboxStore.chats)
