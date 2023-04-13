@@ -46,7 +46,7 @@ export const useMySpaceStore = defineStore('MySpace', {
         clicked() {
             toast('Clicked', {
                 icon: '👋',
-                toastClassName: "bg-[#003333] text-white opacity-70",
+                toastClassName: "bg-[#003333] text-white opacity-90",
             })
         }
 }
