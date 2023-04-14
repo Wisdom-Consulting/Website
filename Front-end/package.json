@@ -8,10 +8,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/skeleton": "^2.0.24",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@headlessui/vue": "^1.7.12",
+    "@hennge/vue3-pagination": "^1.0.17",
     "@heroicons/vue": "^2.0.17",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
@@ -24,6 +26,7 @@
     "pinia": "^2.0.33",
     "swiper": "^9.2.0",
     "vue": "^3.2.47",
+    "vue-awesome-paginate": "^1.1.46",
     "vue-read-more": "^1.1.1",
     "vue-router": "^4.1.6",
     "vue-toastification": "^2.0.0-rc.5"

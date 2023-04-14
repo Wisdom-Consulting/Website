@@ -1,33 +1,128 @@
 <script setup>
-
-import {RouterLink} from 'vue-router'
-import {usePostStore} from "@/stores/Post";
-import {onMounted} from "vue";
-
-const postStore = usePostStore()
-
-onMounted(async () => {
-  await postStore.getPosts();
-  console.log(postStore.posts)
-})
+import Posts from "@/components/Posts.vue";
 </script>
 
 <template>
-  <suspense>
-  <div v-for="post in postStore.posts" class="flex flex-row flex-wrap gap-2 justify-center">
-    <div class="bg-white shadow-lg rounded-lg w-full sm:w-[560px] md:w-[560px] h-[300px] sm:h-[200px] p-6 m-5 flex flex-col justify-between gap-2">
-      <div class="flex gap-2 justify-start md:hidden flex">
-<!--        <img :src="post.user.image ? article.user.image : './src/assets/consultant_male.png'" class="w-8 rounded-full border-[#003333] border-[2px]" alt="">-->
-<!--        <span class="text-[#003333] text-sm self-center">{{article.user.name}}</span>-->
+  <Suspense>
+    <template #default>
+      <Posts/>
+    </template>
+    <template #fallback>
+      <div class="flex w-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-800">
+        <div class="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
+
+        <div class="w-2/3 p-4 md:p-4">
+          <h1 class="w-40 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+
+          <p class="w-48 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+
+          <div class="flex mt-4 item-center gap-x-2">
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+          </div>
+
+          <div class="flex justify-between mt-6 item-center">
+            <h1 class="w-10 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+
+            <div class="h-4 bg-gray-200 rounded-lg w-28 dark:bg-gray-700"></div>
+          </div>
+        </div>
       </div>
-      <div class="flex flex-col gap-4">
-<!--        <h3 class="font-bold text-[15px] text-wrap text-[#003333]">{{post.title}}</h3>-->
+      <div class="flex w-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-800">
+        <div class="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
+
+        <div class="w-2/3 p-4 md:p-4">
+          <h1 class="w-40 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+
+          <p class="w-48 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+
+          <div class="flex mt-4 item-center gap-x-2">
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+          </div>
+
+          <div class="flex justify-between mt-6 item-center">
+            <h1 class="w-10 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+
+            <div class="h-4 bg-gray-200 rounded-lg w-28 dark:bg-gray-700"></div>
+          </div>
+        </div>
       </div>
-      <div class="flex flex-col gap-4">
-        <h3 class="font-medium text-[15px] text-wrap text-[#003333]">{{post.body.slice(0, 130)}}... <RouterLink to="" class="text-black">Read more</RouterLink></h3>
+      <div class="flex w-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-800">
+        <div class="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
+
+        <div class="w-2/3 p-4 md:p-4">
+          <h1 class="w-40 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+
+          <p class="w-48 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+
+          <div class="flex mt-4 item-center gap-x-2">
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+          </div>
+
+          <div class="flex justify-between mt-6 item-center">
+            <h1 class="w-10 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+
+            <div class="h-4 bg-gray-200 rounded-lg w-28 dark:bg-gray-700"></div>
+          </div>
+        </div>
       </div>
-      <button class="bg-[#003333] text-white rounded-2xl w-fit px-4 py-2 h-fit self-end">Read</button>
-    </div>
-  </div>
-  </suspense>
+      <div class="flex w-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-800">
+        <div class="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
+
+        <div class="w-2/3 p-4 md:p-4">
+          <h1 class="w-40 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+
+          <p class="w-48 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+
+          <div class="flex mt-4 item-center gap-x-2">
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+          </div>
+
+          <div class="flex justify-between mt-6 item-center">
+            <h1 class="w-10 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+
+            <div class="h-4 bg-gray-200 rounded-lg w-28 dark:bg-gray-700"></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex w-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-800">
+        <div class="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
+
+        <div class="w-2/3 p-4 md:p-4">
+          <h1 class="w-40 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+
+          <p class="w-48 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+
+          <div class="flex mt-4 item-center gap-x-2">
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+          </div>
+
+          <div class="flex justify-between mt-6 item-center">
+            <h1 class="w-10 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+
+            <div class="h-4 bg-gray-200 rounded-lg w-28 dark:bg-gray-700"></div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </Suspense>
 </template>

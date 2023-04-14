@@ -12,7 +12,22 @@ class ContentController extends Controller
      */
     public function index()
     {
-        return Content::with('category')->with('user')->get();
+        try {
+        $articlePerPage = 5;
+        $content = Content::with('category')
+            ->with('user')
+            ->simplePaginate($articlePerPage);
+        $pagesCount = Content::count() / $articlePerPage;
+        return [
+            'content' => $content,
+            'pagesCount' => ceil($pagesCount)
+        ];
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+
     }
 
     /**

@@ -9,21 +9,9 @@ import {useConsultancyStore} from "@/stores/Consultancy";
 import {usePostStore} from "@/stores/Post";
 import {useInboxStore} from "@/stores/Inbox";
 
-const authStore = useAuthStore();
-const consultancyStore = useConsultancyStore()
-const PostStore = usePostStore()
 const InboxStore = useInboxStore()
 
 onMounted ( async () => {
-  if (authStore.user === null) {
-    await authStore.getUser();
-  }
-  if (consultancyStore.content === null){
-    await consultancyStore.getArticles();
-  }
-    // await dashboardStore.assignRoleToUser('admin', '65');
-
-
   await InboxStore.getChats();
   console.log(InboxStore.chats)
 })
@@ -31,7 +19,32 @@ onMounted ( async () => {
 </script>
 
 <template>
-  <Navbar/>
-  <RouterView/>
-  <Footer/>
+  <Suspense>
+    <template #default>
+      <Navbar/>
+    </template>
+    <template #fallback>
+      <section class="bg-white dark:bg-gray-900">
+        <div class="container flex flex-col items-center justify-between p-6 mx-auto space-y-4 animate-pulse sm:space-y-0 sm:flex-row">
+          <p class="w-32 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+          <div class="flex flex-wrap items-center justify-center gap-6 mt-10">
+            <p class="w-20 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-20 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-20 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-20 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-20 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
+            <p class="w-8 h-8 bg-gray-200 rounded-full dark:bg-gray-700"></p>
+          </div>
+        </div>
+      </section>
+    </template>
+  </Suspense>
+      <RouterView/>
+      <Footer/>
 </template>
+
+<style>
+Html, body {
+  min-height: 100vh !important;
+}
+</style>

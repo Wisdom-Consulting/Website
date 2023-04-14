@@ -1,39 +1,62 @@
 <script setup>
 import {useConsultancyStore} from "@/stores/Consultancy";
 import Search from "@/components/Search.vue";
+import "@hennge/vue3-pagination/dist/vue3-pagination.css";
+import {ref} from "vue";
+import ConsultingArticles from "@/components/ConsultingArticles.vue";
 
 const consultancyStore = useConsultancyStore()
+
+let page = ref(1)
 
 </script>
 
 <template>
   <search/>
-  <div  class="flex flex-col border-lg border-black gap-2 mt-5">
-    <div v-for="article in consultancyStore.content" class="flex flex-row flex-wrap gap-2 justify-center">
-      <div class="bg-white shadow-lg rounded-lg w-[200px] h-[200px] p-2 hidden md:flex flex-col gap-2">
-        <div class="flex gap-2 justify-center">
-          <span class="text-[#003333] text-sm"></span>
-        </div>
-        <img :src="article.user.image ? article.user.image : './src/assets/consultant_male.png'"
-             class="w-20 self-center rounded-full border-[#003333] border-[2px]" alt="">
-        <div class="flex flex-col gap-4">
-          <h3 class="font-medium text-[15px] text-wrap text-center text-[#003333]">{{article.user.name}}</h3>
-        </div>
-        <button class="bg-[#003333] text-white rounded-2xl w-fit px-4 py-2 h-fit self-center">Contact</button>
+  <Suspense>
+    <template #default>
+      <ConsultingArticles/>
+    </template>
+    <template #fallback>
+
+      <div role="status" class="mx-auto max-w-2xl flex flex-col gap-4 mt-10">
+        <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
+        <ul class="mt-5 space-y-3">
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+        </ul>
+        <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
+        <ul class="mt-5 space-y-3">
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+        </ul>
+        <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
+        <ul class="mt-5 space-y-3">
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+        </ul>
+        <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
+        <ul class="mt-5 space-y-3">
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+        </ul>
+        <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
+        <ul class="mt-5 space-y-3">
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+          <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+        </ul>
       </div>
-      <div class="bg-white shadow-lg rounded-lg w-full sm:w-[560px] md:w-[560px] h-[300px] sm:h-[200px] p-6 m-5 flex flex-col justify-between gap-2">
-        <div class="flex gap-2 justify-start md:hidden flex">
-          <img :src="article.user.image ? article.user.image : './src/assets/consultant_male.png'" class="w-8 rounded-full border-[#003333] border-[2px]" alt="">
-          <span class="text-[#003333] text-sm self-center">{{article.user.name}}</span>
-        </div>
-        <div class="flex flex-col gap-4">
-          <h3 class="font-bold text-[15px] text-wrap text-[#003333]">{{article.title}}</h3>
-        </div>
-        <div class="flex flex-col gap-4">
-          <h3 class="font-medium text-[15px] text-wrap text-[#003333]">{{article.body.slice(0, 130)}}... <RouterLink to="" class="text-black">Read more</RouterLink></h3>
-        </div>
-        <button class="bg-[#003333] text-white rounded-2xl w-fit px-4 py-2 h-fit self-end">Read</button>
-      </div>
-    </div>
-  </div>
+
+    </template>
+  </Suspense>
 </template>
