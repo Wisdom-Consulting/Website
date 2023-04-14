@@ -42,9 +42,3 @@ onMounted ( async () => {
       <RouterView/>
       <Footer/>
 </template>
-
-<style>
-Html, body {
-  min-height: 100vh !important;
-}
-</style>

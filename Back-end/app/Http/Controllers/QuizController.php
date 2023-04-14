@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Answer;
-use App\Models\Question;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 
@@ -12,9 +10,14 @@ class QuizController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Quiz::with('quiz_field')->with('level')->with('question.answer')->get();
+        $category = $request->field;
+        // Get quizzes by a specific quiz field
+        return Quiz::whereHas('quizField', function ($query) use ($category) {
+            $query->where('id', $category);
+        })->get();
+
     }
 
 

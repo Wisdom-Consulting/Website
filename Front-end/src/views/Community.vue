@@ -8,121 +8,102 @@ import Posts from "@/components/Posts.vue";
       <Posts/>
     </template>
     <template #fallback>
-      <div class="flex w-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-800">
-        <div class="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
+        <div class="flex animate-pulse">
+            <div class="flex-shrink-0">
+                <span class="w-12 h-12 block bg-gray-200 rounded-full dark:bg-gray-700"></span>
+            </div>
 
-        <div class="w-2/3 p-4 md:p-4">
-          <h1 class="w-40 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+            <div class="ml-4 mt-2 w-full">
+                <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
 
-          <p class="w-48 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-
-          <div class="flex mt-4 item-center gap-x-2">
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-          </div>
-
-          <div class="flex justify-between mt-6 item-center">
-            <h1 class="w-10 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
-
-            <div class="h-4 bg-gray-200 rounded-lg w-28 dark:bg-gray-700"></div>
-          </div>
+                <ul class="mt-5 space-y-3">
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="flex w-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-800">
-        <div class="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
+        <div class="flex animate-pulse">
+            <div class="flex-shrink-0">
+                <span class="w-12 h-12 block bg-gray-200 rounded-full dark:bg-gray-700"></span>
+            </div>
 
-        <div class="w-2/3 p-4 md:p-4">
-          <h1 class="w-40 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+            <div class="ml-4 mt-2 w-full">
+                <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
 
-          <p class="w-48 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-
-          <div class="flex mt-4 item-center gap-x-2">
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-          </div>
-
-          <div class="flex justify-between mt-6 item-center">
-            <h1 class="w-10 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
-
-            <div class="h-4 bg-gray-200 rounded-lg w-28 dark:bg-gray-700"></div>
-          </div>
+                <ul class="mt-5 space-y-3">
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="flex w-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-800">
-        <div class="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
+        <div class="flex animate-pulse">
+            <div class="flex-shrink-0">
+                <span class="w-12 h-12 block bg-gray-200 rounded-full dark:bg-gray-700"></span>
+            </div>
 
-        <div class="w-2/3 p-4 md:p-4">
-          <h1 class="w-40 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+            <div class="ml-4 mt-2 w-full">
+                <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
 
-          <p class="w-48 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-
-          <div class="flex mt-4 item-center gap-x-2">
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-          </div>
-
-          <div class="flex justify-between mt-6 item-center">
-            <h1 class="w-10 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
-
-            <div class="h-4 bg-gray-200 rounded-lg w-28 dark:bg-gray-700"></div>
-          </div>
+                <ul class="mt-5 space-y-3">
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="flex w-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-800">
-        <div class="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
+        <div class="flex animate-pulse">
+            <div class="flex-shrink-0">
+                <span class="w-12 h-12 block bg-gray-200 rounded-full dark:bg-gray-700"></span>
+            </div>
 
-        <div class="w-2/3 p-4 md:p-4">
-          <h1 class="w-40 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+            <div class="ml-4 mt-2 w-full">
+                <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
 
-          <p class="w-48 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-
-          <div class="flex mt-4 item-center gap-x-2">
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-          </div>
-
-          <div class="flex justify-between mt-6 item-center">
-            <h1 class="w-10 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
-
-            <div class="h-4 bg-gray-200 rounded-lg w-28 dark:bg-gray-700"></div>
-          </div>
+                <ul class="mt-5 space-y-3">
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="flex w-full max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg animate-pulse dark:bg-gray-800">
-        <div class="w-1/3 bg-gray-300 dark:bg-gray-600"></div>
+        <div class="flex animate-pulse">
+            <div class="flex-shrink-0">
+                <span class="w-12 h-12 block bg-gray-200 rounded-full dark:bg-gray-700"></span>
+            </div>
 
-        <div class="w-2/3 p-4 md:p-4">
-          <h1 class="w-40 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
+            <div class="ml-4 mt-2 w-full">
+                <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
 
-          <p class="w-48 h-2 mt-4 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-
-          <div class="flex mt-4 item-center gap-x-2">
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-            <p class="w-5 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></p>
-          </div>
-
-          <div class="flex justify-between mt-6 item-center">
-            <h1 class="w-10 h-2 bg-gray-200 rounded-lg dark:bg-gray-700"></h1>
-
-            <div class="h-4 bg-gray-200 rounded-lg w-28 dark:bg-gray-700"></div>
-          </div>
+                <ul class="mt-5 space-y-3">
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                </ul>
+            </div>
         </div>
-      </div>
+        <div class="flex animate-pulse">
+            <div class="flex-shrink-0">
+                <span class="w-12 h-12 block bg-gray-200 rounded-full dark:bg-gray-700"></span>
+            </div>
+
+            <div class="ml-4 mt-2 w-full">
+                <h3 class="h-4 bg-gray-200 rounded-md dark:bg-gray-700" style="width: 40%;"></h3>
+
+                <ul class="mt-5 space-y-3">
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                    <li class="w-full h-4 bg-gray-200 rounded-md dark:bg-gray-700"></li>
+                </ul>
+            </div>
+        </div>
     </template>
   </Suspense>
 </template>

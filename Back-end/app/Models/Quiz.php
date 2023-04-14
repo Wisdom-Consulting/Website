@@ -33,7 +33,7 @@ class Quiz extends Model
         return $this->hasMany(Answer::class);
     }
 
-    public function quiz_field()
+    public function quizField()
     {
         return $this->belongsTo(QuizField::class);
     }

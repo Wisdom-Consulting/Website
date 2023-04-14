@@ -1,12 +1,12 @@
 <script setup>
 import {usePostStore} from "@/stores/Post";
-
 const postStore = usePostStore()
+
 await postStore.getPosts();
 </script>
 
 <template>
-  <div v-for="post in postStore.posts" class="flex flex-row flex-wrap gap-2 justify-center">
+  <div v-for="post in postStore.allPosts" class="flex flex-row flex-wrap gap-2 justify-center">
     <div
         class="bg-white shadow-lg rounded-lg w-full sm:w-[560px] md:w-[560px] h-[300px] sm:h-[200px] p-6 m-5 flex flex-col justify-between gap-2">
       <div class="flex gap-2 justify-start md:hidden flex">

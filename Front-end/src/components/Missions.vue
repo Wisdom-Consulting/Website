@@ -6,17 +6,17 @@ import {CheckIcon, ChevronUpDownIcon} from '@heroicons/vue/20/solid'
 import {useMySpaceStore} from '@/stores/MySpace'
 const mySpaceStore = useMySpaceStore()
 
-onMounted(async () => {
-  await mySpaceStore.getQuizFields()
-})
+// onMounted(async () => {
+    await mySpaceStore.getQuizFields()
+
+// await mySpaceStore.getQuizFields()
 
 
-const selected = ref('Choose a field')
+
+const selected = ref(mySpaceStore.fields[0])
 </script>
 
 <template>
-  <Suspense>
-    <template #default>
     <h1 class="font-bold text-[30px] text-wrap text-[#003333] flex mx-auto justify-center mt-20">Missions</h1>
     <div class="flex items-center justify-center mt-5">
       <Listbox as="div" v-model="selected">
@@ -55,11 +55,4 @@ const selected = ref('Choose a field')
         </div>
       </Listbox>
     </div>
-    </template>
-    <template #fallback>
-      <div>
-      Looooooooding
-      </div>
-    </template>
-  </Suspense>
 </template>

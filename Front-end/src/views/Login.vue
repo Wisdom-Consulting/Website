@@ -11,15 +11,7 @@ const form = ref({
 })
 </script>
 <template>
-  <!--
-    This example requires updating your template:
-
-    ```
-    <html class="h-full bg-gray-50">
-    <body class="h-full">
-    ```
-  -->
-  <div class="min-h-full flex flex-col justify-center pt-0 pb-12 sm:px-6 lg:px-8">
+  <div class=" flex flex-col justify-center pt-0 pb-2 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <h2 class="mt-6 text-center text-3xl font-extrabold text-[#003333]">Sign in</h2>
       <div class="mt-2 text-center text-sm text-gray-600">
@@ -27,7 +19,7 @@ const form = ref({
       </div>
     </div>
 
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="mt-8 sm:mx-auto mx-auto sm:w-full sm:max-w-md">
       <div class="bg-[#F2F2F2] py-8 px-4 shadow sm:rounded-lg sm:px-10">
         <form class="space-y-6" @submit.prevent="authStore.logIn(form)">
           <div>
@@ -45,7 +37,7 @@ const form = ref({
             </div>
           </div>
 
-          <div class="flex items-center justify-between">
+          <div class="flex flex-col sm:flex-row items-center justify-between">
             <div class="flex items-center">
               <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
               <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
