@@ -10,6 +10,7 @@ import Dashboard from "@/views/Dashboard.vue";
 import Profile from "@/views/Profile.vue";
 import Inbox from "@/views/Inbox.vue";
 import NotFound from "@/views/NotFound.vue";
+import AddQuiz from "@/views/AddQuiz.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -72,6 +73,11 @@ const router = createRouter({
             name: 'Inbox',
             component: Inbox
 
+        },
+        {
+            path: '/dashboard/addQuiz',
+            name: 'AddQuiz',
+            component: AddQuiz
         },
         {
             path: '/:pathMatch(.*)*',
