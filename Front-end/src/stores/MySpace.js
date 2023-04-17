@@ -23,23 +23,6 @@ export const useMySpaceStore = defineStore('MySpace', {
             this.quizzes = response.data
             console.log(this.quizzes)
         },
-        async createQuiz(quiz) {
-            const response = await axios.post('/api/quizzes', quiz)
-            this.quizzes.push(response.data)
-            toast.success('Quiz created successfully')
-        },
-        async updateQuiz(quiz) {
-            const response = await axios.put(`/api/quizzes/${quiz.id}`, quiz)
-            const index = this.quizzes.findIndex(item => item.id === quiz.id)
-            this.quizzes.splice(index, 1, response.data)
-            toast.success('Quiz updated successfully')
-        },
-        async deleteQuiz(quiz) {
-            await axios.delete(`/api/quizzes/${quiz.id}`)
-            const index = this.quizzes.findIndex(item => item.id === quiz.id)
-            this.quizzes.splice(index, 1)
-            toast.success('Quiz deleted successfully')
-        },
         loadQuiz(quiz) {
             this.quiz = quiz
         },
