@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Level;
 use App\Models\Quiz;
 use App\Models\QuizField;
 use App\Models\User;
@@ -23,7 +24,8 @@ class QuizFactory extends Factory
             'title' => $this->faker->sentence,
             'body' => $this->faker->paragraph,
             'user_id' => User::all()->random()->id,
-            'quiz_fields_id' => QuizField::all()->random()->id,
+            'level_id' => Level::all()->random()->id,
+            'quiz_field_id' => QuizField::all()->random()->id,
         ];
     }
 }

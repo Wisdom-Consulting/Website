@@ -26,6 +26,10 @@ export const useDashboardStore = defineStore('Dashboard', {
         },
         async createQuiz(quiz) {
             const response = await axios.post('/api/quizzes', quiz)
+            if (response.data.errors) {
+                toast.error(response.data.errors)
+                return
+            }
             this.quizzes.push(response.data)
             toast.success('Quiz created successfully')
         },
