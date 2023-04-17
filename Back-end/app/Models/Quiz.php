@@ -13,7 +13,7 @@ class Quiz extends Model
         'user_id',
         'body',
         'title',
-        'quiz_fields_id',
+        'quiz_field_id',
         'level_id'
     ];
 

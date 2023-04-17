@@ -9,11 +9,13 @@ export const useMySpaceStore = defineStore('MySpace', {
         quizzes: [],
         quizFields: [],
         Levels: [],
+        SelectedField: '',
     }),
     getters: {
         quiz: (state) => state.quizzes,
         fields: (state) => state.quizFields,
         levels: (state) => state.levels,
+        selectedField: (state) => state.selectedField,
     },
     actions: {
         async getQuizFields() {
@@ -25,8 +27,8 @@ export const useMySpaceStore = defineStore('MySpace', {
             this.Levels = response.data
             console.log(this.Levels)
         },
-        async getQuizzes() {
-            const response = await axios.get('/api/quizzes')
+        async getQuizzes(field) {
+            const response = await axios.get('/api/quizzes?field=' + field)
             this.quizzes = response.data
             console.log(this.quizzes)
         },

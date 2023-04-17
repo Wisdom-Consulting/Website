@@ -27,7 +27,7 @@ let QuizData = ref({
     title: "",
     body: "",
     level_id: "",
-    quiz_field_id: "",
+    quiz_field_id: null,
     questions: [],
 });
 

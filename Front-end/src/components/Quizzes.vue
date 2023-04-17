@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 const mySpaceStore = useMySpaceStore()
-await mySpaceStore.getQuizzes()
+await mySpaceStore.getQuizzes(13)
 </script>
 
 <template>

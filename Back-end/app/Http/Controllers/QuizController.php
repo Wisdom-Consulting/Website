@@ -16,7 +16,7 @@ class QuizController extends Controller
         // Get quizzes by a specific quiz field
         return Quiz::whereHas('quiz_field', function ($query) use ($category) {
             $query->where('id', $category);
-        })->get();
+        })->with('quiz_field', 'level')->get();
 
     }
 
@@ -26,26 +26,26 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
+//        return $request->all();
         $fields = $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'quiz_field_id' => 'required|exists:quiz_fields,id',
             'level_id' => 'required|exists:levels,id',
+            'quiz_field_id' => 'required|exists:quiz_fields,id',
             'questions' => 'required',
             'questions.*.body' => 'required',
             'questions.*.answers' => 'required',
             'questions.*.answers.*.body' => 'required',
             'questions.*.answers.*.is_correct' => 'required',
         ]);
-        // Add quiz
         $quiz = Quiz::create([
             'user_id' => auth()->user()->id,
             'title' => $request->title,
             'body' => $request->body,
-            'quiz_field_id' => $request->quiz_fields_id,
+            'quiz_field_id' => $request->quiz_field_id,
             'level_id' => $request->level_id,
         ]);
-        // Add questions
+//        return $quiz;
         foreach ($request->questions as $question) {
             $newQuestion = $quiz->question()->create([
                 'body' => $question['body'],
