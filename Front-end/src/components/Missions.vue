@@ -4,20 +4,28 @@ import {Listbox, ListboxButton, ListboxOption, ListboxOptions} from '@headlessui
 import {CheckIcon, ChevronUpDownIcon} from '@heroicons/vue/20/solid'
 
 import {useMySpaceStore} from '@/stores/MySpace'
+import {useAuthStore} from "@/stores/Auth";
 
 const mySpaceStore = useMySpaceStore()
+const authStore = useAuthStore()
 
 // onMounted(async () => {
 await mySpaceStore.getQuizFields()
 
 // await mySpaceStore.getQuizFields()
-let selected = ref(1)
+let selected = ref(mySpaceStore.fields[0])
 
 mySpaceStore.SelectedField = selected.id
 </script>
 
 <template>
     <h1 class="font-bold text-[30px] text-wrap text-[#003333] flex mx-auto justify-center mt-20">Missions</h1>
+<!--    Add quiz button-->
+    <div v-if="authStore.authRole[0] === 'admin'" class="flex flex-row gap-2 text-center justify-center items-center mt-2">
+        <RouterLink to="/dashboard/addQuiz"
+                class="bg-[#DDDDDD] text-white text-3xl font-bold py-1 px-4 rounded-md self-center">+
+        </RouterLink>
+    </div>
     <div class="flex items-center justify-center mt-5">
         <Listbox as="div" v-model="selected">
             <div class="relative mt-2">

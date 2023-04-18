@@ -66,7 +66,7 @@ const creator = [
 ]
 const admin = [
     {
-        name: 'sidati',
+        name: 'Community',
         path: '/community',
     },
     {
@@ -75,7 +75,7 @@ const admin = [
     },
     {
         name: 'Consulting',
-        path: '/contact',
+        path: '/consulting',
     },
     {
         name: 'Academy',
