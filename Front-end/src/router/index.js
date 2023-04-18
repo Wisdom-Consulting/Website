@@ -11,6 +11,10 @@ import Profile from "@/views/Profile.vue";
 import Inbox from "@/views/Inbox.vue";
 import NotFound from "@/views/NotFound.vue";
 import AddQuiz from "@/views/AddQuiz.vue";
+import EditQuiz from "@/components/editQuiz.vue";
+import {useLocalStorage} from "@vueuse/core";
+
+
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,20 +27,23 @@ const router = createRouter({
         {
             path: '/about',
             name: 'about',
-            // route level code-splitting
-            // this generates a separate chunk (About.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
             component: () => import('../views/AboutView.vue')
         },
         {
             path: '/login',
             name: 'login',
-            component: Login
+            component: Login,
+            meta: {
+                requiresGuest: true
+            }
         },
         {
             path: '/signup',
             name: 'signup',
-            component: Signup
+            component: Signup,
+            meta: {
+                requiresGuest: true
+            }
         },
         {
             name: 'academy',
@@ -51,33 +58,59 @@ const router = createRouter({
         {
             name: 'My Space',
             path: '/myspace',
-            component: MySpace
+            component: MySpace,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             name: 'Consulting',
             path: '/consulting',
-            component: Consulting
+            component: Consulting,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             name: 'Dashboard',
             path: '/dashboard',
-            component: Dashboard
+            component: Dashboard,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             name: 'Profile',
             path: '/profile',
-            component: Profile
+            component: Profile,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/inbox',
             name: 'Inbox',
-            component: Inbox
+            component: Inbox,
+            meta: {
+                requiresAuth: true
+            }
 
         },
         {
             path: '/dashboard/addQuiz',
             name: 'AddQuiz',
-            component: AddQuiz
+            component: AddQuiz,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/dashboard/editQuiz',
+            name: 'EditQuiz',
+            component: EditQuiz,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/:pathMatch(.*)*',
@@ -85,6 +118,20 @@ const router = createRouter({
             component: NotFound
         }
     ]
+})
+
+router.beforeEach((to, from, next) => {
+    const isLoggedIn = useLocalStorage('isLoggedIn', false)// or use your preferred method of checking if the user is logged in
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+    const requiresGuest = to.matched.some(record => record.meta.requiresGuest)
+
+    if (requiresAuth && !isLoggedIn) {
+        next('/login')
+    } else if (requiresGuest && isLoggedIn) {
+        next('/')
+    } else {
+        next()
+    }
 })
 
 export default router

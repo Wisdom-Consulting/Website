@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContentController extends Controller
 {
@@ -27,7 +28,30 @@ class ContentController extends Controller
                 'message' => $e->getMessage(),
             ], 500);
         }
+    }
 
+    /**
+     * Display a listing by user.
+     */
+
+    public function indexByUser(){
+        $user_id = Auth::user()->id;
+        try {
+            $articlePerPage = 5;
+            $content = Content::with('category')
+                ->with('user')
+                ->where('user_id', $user_id)
+                ->simplePaginate($articlePerPage);
+            $pagesCount = $content->count() / $articlePerPage;
+            return [
+                'content' => $content,
+                'pagesCount' => ceil($pagesCount)
+            ];
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**

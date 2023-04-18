@@ -8,50 +8,21 @@ import {useToast} from "vue-toastification";
 const mySpaceStore = useMySpaceStore();
 const dashboardStore = useDashboardStore();
 const authStore = useAuthStore();
+let toast = useToast();
+
 let step = ref(1);
-let QuestionsCount = ref(1);
-let steps = 2;
-
-watch(QuestionsCount, (newValue) => {
-    console.log(QuestionsCount.value);
-    steps = ref(QuestionsCount.value + 1);
-    if (newValue < 1) {
-        QuestionsCount.value = 1;
-    }
-});
-
-
+let steps = dashboardStore.quiz.questions.length + 1;
 console.log(steps);
 
-let QuizData = ref({
-    title: "",
-    body: "",
-    level_id: "",
-    quiz_field_id: null,
-    questions: [],
-});
+// watch(QuestionsCount, (newValue) => {
+//     console.log(QuestionsCount.value);
+//     steps = ref(QuestionsCount.value + 1);
+//     if (newValue < 1) {
+//         QuestionsCount.value = 1;
+//     }
+// });
 
-let QuestionData = ref({
-    body: "",
-    answers: [
-        {
-            body: "",
-            is_correct: false,
-        },
-        {
-            body: "",
-            is_correct: false,
-        },
-        {
-            body: "",
-            is_correct: false,
-        },
-        {
-            body: "",
-            is_correct: false,
-        },
-    ],
-});
+let QuizData = ref(dashboardStore.quiz);
 
 function nextStep() {
     if (step.value !== 1) {
@@ -85,22 +56,16 @@ function nextStep() {
 }
 
 function finish() {
-    QuizData.value.questions.push(QuestionData.value);
-    if (dashboardStore.updateQuiz(QuizData.value)){
+    try {
+        dashboardStore.updateQuiz(QuizData.value)
         step.value++;
-    }else {
         // Push to dashboard
         this.$router.push("/academy");
         // Toast error
-        useToast().error("Error updating quiz");
+        toast.error("Error updating quiz");
+    } catch (e) {
+        toast.error("Error updating quiz");
     }
-}
-
-function loadQuiz() {
-    QuizData.value = dashboardStore.quiz;
-    QuestionsCount.value = QuizData.value.questions.length;
-    steps = QuestionsCount.value + 1;
-    console.log(QuizData.value);
 }
 
 await mySpaceStore.getQuizFields();
@@ -134,7 +99,7 @@ await mySpaceStore.getLevels();
 
                             <div class="text-gray-600 mb-8">
                                 <p class="text-center">
-                                    You have successfully update the quiz
+                                    You have successfully updated the quiz
                                 </p>
                             </div>
 
@@ -257,7 +222,7 @@ await mySpaceStore.getLevels();
                             </div>
                         </div>
                         <!-- step n > 1 && n < steps -->
-                        <transition v-for="question in QuestionsCount">
+                        <transition v-for="question in QuestionData">
                             <div v-if="step === question + 1">
                                 <div class="mb-5">
                                     <label

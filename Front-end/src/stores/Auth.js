@@ -1,12 +1,14 @@
 import {defineStore} from 'pinia'
 import axios from 'axios'
 import {useConsultancyStore} from "@/stores/Consultancy";
+import {useLocalStorage} from "@vueuse/core";
+const isLoggedIn = useLocalStorage('isLoggedIn', () => false)
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
         authUser: null,
         authRole: null,
-        authError: ''
+        authError: '',
     }),
     getters: {
         user: (state) => state.authUser,
@@ -30,6 +32,8 @@ export const useAuthStore = defineStore('auth', {
                 if (response.status === 204) {
                     await this.getUser()
                     await useConsultancyStore().getArticles()
+                    // set isLoggedIn in vueuse/useLocalStorage to true so that we can check if the user is logged in or not in the router
+                    isLoggedIn.value=true
                     await this.router.push('/')
                 } else {
                     this.authError = response.data.message
@@ -54,6 +58,8 @@ export const useAuthStore = defineStore('auth', {
                 if (status === 204) {   // 204 is the status code for successful registration
                     await this.getUser()
                     await useConsultancyStore().getArticles()
+                    // set isLoggedIn in vueuse/useLocalStorage to true so that we can check if the user is logged in or not in the router
+                    isLoggedIn.value=true
                     await this.router.push('/')
                 }
             } catch (error) {
@@ -64,6 +70,8 @@ export const useAuthStore = defineStore('auth', {
         async logOut() {
             await axios.post('/logout');
             this.authUser = null;
+            this.authRole = null;
+            isLoggedIn.value = false
             await this.router.push('/login')
         },
         async getToken() {

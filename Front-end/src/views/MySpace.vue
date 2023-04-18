@@ -3,9 +3,14 @@ import TestCards from "@/components/TestCards.vue";
 import Missions from "@/components/Missions.vue";
 import Quizzes from "@/components/Quizzes.vue";
 
+import {useAuthStore} from "@/stores/Auth";
+
+const authStore = useAuthStore();
+
 </script>
 
 <template>
+    <main v-if="authStore.authRole === 'client'">
     <TestCards/>
     <Suspense>
         <template #default>
@@ -87,4 +92,14 @@ import Quizzes from "@/components/Quizzes.vue";
             </div>
         </template>
     </Suspense>
+    </main>
+    <main v-else>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>MySpace</h1>
+                </div>
+            </div>
+        </div>
+    </main>
 </template>

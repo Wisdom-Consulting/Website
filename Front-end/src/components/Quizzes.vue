@@ -1,16 +1,16 @@
 <script setup>
-import {onMounted, watchEffect} from "vue";
 import {useMySpaceStore} from "@/stores/MySpace";
 import SwiperCore, {A11y, Navigation, Pagination, Scrollbar} from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import {useAuthStore} from "@/stores/Auth";
-// Import Swiper styles
+import {useDashboardStore} from "@/stores/Dashboard";
 import 'swiper/css'
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 const mySpaceStore = useMySpaceStore()
+const dashboardStore = useDashboardStore()
 const authStore = useAuthStore()
 await mySpaceStore.getQuizzes(13)
 
@@ -47,10 +47,10 @@ await mySpaceStore.getQuizzes(13)
                     <!--          Pass quiz button-->
                     <div class="flex flex-row gap-2 text-center justify-center mt-2">
                         <div v-if="authStore.authRole[0] === 'admin'" class="flex gap-2 flex-wrap items-center justify-center">
-                            <button @click="mySpaceStore.clicked()"
+                            <button @click="dashboardStore.loadUpdateQuizPage(quiz.id)"
                                     class="bg-[#DDDDDD] text-[#003333] text-sm font-bold py-2 px-4 rounded-full self-center">Edit
                             </button>
-                            <button @click="mySpaceStore.clicked()"
+                            <button @click="dashboardStore.clicked()"
                                     class="bg-[#CE7A63] text-white text-sm font-bold py-2 px-4 rounded-full self-center">Delete
                             </button>
                         </div>

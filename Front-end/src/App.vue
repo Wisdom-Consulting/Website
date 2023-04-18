@@ -1,12 +1,10 @@
 <script setup>
 import {RouterView} from 'vue-router'
 import {onMounted} from "vue";
-import { useAuthStore} from "@/stores/Auth";
+import { useLocalStorage } from '@vueuse/core'
 import "./axios"
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
-import {useConsultancyStore} from "@/stores/Consultancy";
-import {usePostStore} from "@/stores/Post";
 import {useInboxStore} from "@/stores/Inbox";
 
 const InboxStore = useInboxStore()
