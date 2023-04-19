@@ -3,7 +3,6 @@ import {RouterLink} from 'vue-router'
 import {useAuthStore} from '@/stores/Auth'
 import {Navbar, NavbarCollapse} from 'flowbite-vue'
 import {Menu, MenuButton, MenuItem, MenuItems} from '@headlessui/vue'
-import {onMounted} from "vue";
 
 const authStore = useAuthStore();
 if (authStore.user === null) {
@@ -12,21 +11,9 @@ if (authStore.user === null) {
 // await authStore.getUser();
 const guest = [
     {
-        name: 'History',
+        name: 'Home',
         path: '/',
-    },
-    {
-        name: 'Mission',
-        path: '/mission',
-    },
-    {
-        name: 'Community',
-        path: '/community',
-    },
-    {
-        name: 'Academy',
-        path: '/academy',
-    },
+    }
 ]
 const client = [
     {

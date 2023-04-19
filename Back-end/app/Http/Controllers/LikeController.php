@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Like;
-use App\Http\Requests\StoreLikeRequest;
-use App\Http\Requests\UpdateLikeRequest;
+use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
@@ -27,21 +26,16 @@ class LikeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLikeRequest $request)
+    public function store(Request $request)
     {
-//        dd($request->all());
-        // Validate the request data against the necessary rules
+        $request['user_id'] = auth()->user()->id;
         $validatedData = $request->validate([
             'post_id' => 'required|exists:posts,id',
+            'user_id' => 'required|exists:users,id',
         ]);
 
-        // Set the user_id value to the authenticated user's ID
-        $validatedData['user_id'] = auth()->user()->id;
-
         // Create a new Like instance using the validated data
-        $like = Like::create($validatedData);
-
-        return $like;
+        return Like::create($validatedData);
     }
 
     /**

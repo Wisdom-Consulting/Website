@@ -8,18 +8,19 @@ export const useDashboardStore = defineStore('Dashboard', {
     state: () => ({
         questionCount: 1,
         Quizzes: [],
-        Quiz: []
+        Quiz: [],
+        Quiz_id: null,
 
     }),
     getters: {
         steps: (state) => state.questionCount,
         quizzes: (state) => state.quizzes,
         quiz: (state) => state.quiz,
+        quiz_id: (state) => state.Quiz_id,
     },
     actions: {
         async loadUpdateQuizPage(quizId) {
-            const response = await axios.get(`/api/quizzes/${quizId}`)
-            this.Quiz = response.data
+            this.Quiz_id = quizId
             // push to update quiz page
             await this.router.push('/dashboard/editQuiz')
         },

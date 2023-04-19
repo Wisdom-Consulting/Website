@@ -33,7 +33,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Route::post('/comments', function ()
+//{
+//    return response()->json(['message' => 'Comment created successfully']);
+//});
 // Route for profile
 Route::middleware(['auth:sanctum'])->get('/profile', function (Request $request) {
     return $request->user();
@@ -76,7 +79,7 @@ Route::middleware(['auth:sanctum'])->resource('scores', UserQuizScoreController:
 // Route resource for posts
 Route::middleware(['auth:sanctum'])->resource('posts', PostController::class);
 // Route resource for comments
-Route::middleware(['auth:sanctum'])->resource('comments', CommentController::class);
+Route::resource('comments', CommentController::class);
 // Route resource for likes
 Route::middleware(['auth:sanctum'])->resource('likes', LikeController::class);
 // Route resource for chat

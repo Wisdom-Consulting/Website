@@ -13,6 +13,7 @@ import NotFound from "@/views/NotFound.vue";
 import AddQuiz from "@/views/AddQuiz.vue";
 import EditQuiz from "@/components/editQuiz.vue";
 import {useLocalStorage} from "@vueuse/core";
+import EditArticle from "@/views/EditArticle.vue";
 
 
 
@@ -113,6 +114,14 @@ const router = createRouter({
             }
         },
         {
+            path: '/consulting/editArticle/:id',
+            name: 'EditQuiz',
+            component: EditArticle,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
             path: '/:pathMatch(.*)*',
             name: 'NotFound',
             component: NotFound
@@ -120,18 +129,18 @@ const router = createRouter({
     ]
 })
 
-router.beforeEach((to, from, next) => {
-    const isLoggedIn = useLocalStorage('isLoggedIn', false)// or use your preferred method of checking if the user is logged in
-    const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-    const requiresGuest = to.matched.some(record => record.meta.requiresGuest)
-
-    if (requiresAuth && !isLoggedIn) {
-        next('/login')
-    } else if (requiresGuest && isLoggedIn) {
-        next('/')
-    } else {
-        next()
-    }
-})
+// router.beforeEach((to, from, next) => {
+//     const isLoggedIn = useLocalStorage('isLoggedIn', false)// or use your preferred method of checking if the user is logged in
+//     const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+//     const requiresGuest = to.matched.some(record => record.meta.requiresGuest)
+//
+//     if (requiresAuth && !isLoggedIn) {
+//         next('/login')
+//     } else if (requiresGuest && isLoggedIn) {
+//         next('/')
+//     } else {
+//         next()
+//     }
+// })
 
 export default router

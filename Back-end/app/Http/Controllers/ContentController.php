@@ -59,6 +59,8 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth::user()->id;
+        $request['user_id'] = $user_id;
         $request->validate([
             'title' => 'required',
             'body' => 'required',
@@ -73,7 +75,9 @@ class ContentController extends Controller
      */
     public function show(Content $content)
     {
-        return Content::with('category')->with('user')->get();
+        return Content::with('category')->with('user')->whereHas('user', function ($query) {
+            $query->where('id', Auth::user()->id);
+        })->where('id', $content->id)->first();
     }
 
     /**

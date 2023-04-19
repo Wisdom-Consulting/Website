@@ -12,43 +12,16 @@ let toast = useToast();
 
 let step = ref(1);
 let steps = dashboardStore.quiz.questions.length + 1;
+let QuestionData = dashboardStore.quiz.questions.length;
 console.log(steps);
 
-// watch(QuestionsCount, (newValue) => {
-//     console.log(QuestionsCount.value);
-//     steps = ref(QuestionsCount.value + 1);
-//     if (newValue < 1) {
-//         QuestionsCount.value = 1;
-//     }
-// });
+
 
 let QuizData = ref(dashboardStore.quiz);
 
 function nextStep() {
     if (step.value !== 1) {
-        QuizData.value.questions.push(QuestionData.value);
-        console.log(QuizData.value)
-        QuestionData.value = {
-            body: "",
-            answers: [
-                {
-                    body: "",
-                    is_correct: false,
-                },
-                {
-                    body: "",
-                    is_correct: false,
-                },
-                {
-                    body: "",
-                    is_correct: false,
-                },
-                {
-                    body: "",
-                    is_correct: false,
-                },
-            ],
-        };
+        console.log(QuizData)
         step.value++;
     } else {
         step.value++;
@@ -61,13 +34,13 @@ function finish() {
         step.value++;
         // Push to dashboard
         this.$router.push("/academy");
-        // Toast error
-        toast.error("Error updating quiz");
+        // Toast success
+        toast.success("Quiz updated successfully");
     } catch (e) {
         toast.error("Error updating quiz");
     }
 }
-
+await dashboardStore.loadUpdateQuizPage(dashboardStore.quiz.id);
 await mySpaceStore.getQuizFields();
 await mySpaceStore.getLevels();
 </script>
@@ -190,6 +163,7 @@ await mySpaceStore.getLevels();
                                         id="field"
                                         v-model="QuizData.quiz_field_id"
                                 >
+                                    <option selected>{{ QuizData.quiz_field.name }}</option>
                                     <option
                                             v-for="field in mySpaceStore.fields"
                                             :value="field.id"
@@ -212,6 +186,8 @@ await mySpaceStore.getLevels();
                                         id="level"
                                         v-model="QuizData.level_id"
                                 >
+<!--                                    Selected-->
+                                    <option selected>{{ QuizData.level.name }}</option>
                                     <option
                                             v-for="level in mySpaceStore.Levels"
                                             :value="level.id"
@@ -228,13 +204,13 @@ await mySpaceStore.getLevels();
                                     <label
                                             for="questionBody"
                                             class="font-bold mb-1 text-gray-700 block"
-                                    >Question {{ question }}</label
+                                    >Question</label
                                     >
                                     <textarea
                                             type="text"
                                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-[#003333] focus:ring-blue-500 focus:border-blue-500"
                                             placeholder="your question body..."
-                                            v-model="QuestionData.body"
+                                            v-model="question.body"
                                     ></textarea>
                                 </div>
                                 <div class=" flex flex-col gap-2">
@@ -245,12 +221,8 @@ await mySpaceStore.getLevels();
                                                 type="text"
                                                 class="border border-[#003333] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                                 placeholder="Option 1"
-                                                v-model="QuestionData.answers[0].body"
+                                                v-model="question.answers[0].body"
                                         />
-                                        <input id="teal-radio" type="checkbox"
-                                               v-model="QuestionData.answers[0].is_correct"
-                                               name="colored-radio"
-                                               class="self-center w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     </div>
                                     <div class="flex gap-2 justify-center align-content-center">
                                         <input
@@ -259,12 +231,8 @@ await mySpaceStore.getLevels();
                                                 type="text"
                                                 class="border border-[#003333] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                                 placeholder="Option 1"
-                                                v-model="QuestionData.answers[1].body"
+                                                v-model="question.answers[1].body"
                                         />
-                                        <input id="teal-radio" type="checkbox"
-                                               v-model="QuestionData.answers[1].is_correct"
-                                               name="colored-radio"
-                                               class="self-center w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     </div>
                                     <div class="flex gap-2 justify-center align-content-center">
                                         <input
@@ -273,12 +241,8 @@ await mySpaceStore.getLevels();
                                                 type="text"
                                                 class="border border-[#003333] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                                 placeholder="Option 1"
-                                                v-model="QuestionData.answers[2].body"
+                                                v-model="question.answers[2].body"
                                         />
-                                        <input id="teal-radio" type="checkbox"
-                                               v-model="QuestionData.answers[2].is_correct"
-                                               name="colored-radio"
-                                               class="self-center w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     </div>
                                     <div class="flex gap-2 justify-center align-content-center">
                                         <input
@@ -287,12 +251,8 @@ await mySpaceStore.getLevels();
                                                 type="text"
                                                 class="border border-[#003333] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                                 placeholder="Option 1"
-                                                v-model="QuestionData.answers[3].body"
+                                                v-model="question.answers[3].body"
                                         />
-                                        <input id="teal-radio" type="checkbox"
-                                               v-model="QuestionData.answers[3].is_correct"
-                                               name="colored-radio"
-                                               class="self-center w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     </div>
                                 </div>
                             </div>

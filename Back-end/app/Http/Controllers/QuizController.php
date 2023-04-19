@@ -67,7 +67,7 @@ class QuizController extends Controller
     public function show(Quiz $quiz)
     {
         // retun quiz with questions and answers
-        return $quiz->load('question.answer');
+        return $quiz->load('question.answer')->load('quiz_field')->load('level');
     }
 
 

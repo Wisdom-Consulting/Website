@@ -1,7 +1,6 @@
 <script setup>
 import {RouterView} from 'vue-router'
 import {onMounted} from "vue";
-import { useLocalStorage } from '@vueuse/core'
 import "./axios"
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
