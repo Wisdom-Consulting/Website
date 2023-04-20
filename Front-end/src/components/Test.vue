@@ -70,6 +70,7 @@ const NextQuestion = () => {
                         :key="answer.id"
                         :for="'answer' + index"
                         :class="`answer option bg-white rounded-3xl p-2 ${selected === answer.id &&  answer.id === correct ? 'correct' : 'wrong'} ${selected !== null &&  answer.id === selected ? 'disabled' : ''} ${correct === selected ? 'correct' : 'wrong'} ${correct === selected ? 'disabled'	: ''}`">
+
                     <input
                             type="radio"
 
