@@ -78,6 +78,8 @@ Route::middleware(['auth:sanctum'])->resource('answers', AnswerController::class
 Route::middleware(['auth:sanctum'])->resource('scores', UserQuizScoreController::class);
 // Route resource for posts
 Route::middleware(['auth:sanctum'])->resource('posts', PostController::class);
+// Route for delete like from post
+Route::middleware(['auth:sanctum'])->delete('/posts/{post}/likes', [PostController::class, 'deleteLike']);
 // Route resource for comments
 Route::resource('comments', CommentController::class);
 // Route resource for likes

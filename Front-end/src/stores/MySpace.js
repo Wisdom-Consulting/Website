@@ -7,12 +7,14 @@ const toast = useToast()
 export const useMySpaceStore = defineStore('MySpace', {
     state: () => ({
         quizzes: [],
+        Quiz: [],
         quizFields: [],
         Levels: [],
         SelectedField: '',
     }),
     getters: {
         quiz: (state) => state.quizzes,
+        test: (state) => state.Quiz,
         fields: (state) => state.quizFields,
         levels: (state) => state.levels,
         selectedField: (state) => state.selectedField,
@@ -35,11 +37,14 @@ export const useMySpaceStore = defineStore('MySpace', {
         loadQuiz(quiz) {
             this.quiz = quiz
         },
-        clicked() {
-            toast('Clicked', {
-                icon: '👋',
-                toastClassName: "bg-[#003333] text-white opacity-90",
-            })
-        }
+        async loadTest(quiz) {
+            try {
+                const response = await axios.get(`/api/quizzes/${quiz}`)
+                this.Quiz = response.data
+                await this.router.push('/quiz/test')
+            } catch (error) {
+                toast.error('Error loading quiz')
+            }
+        },
 }
 })

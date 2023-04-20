@@ -74,9 +74,13 @@ export const useConsultancyStore = defineStore('Consultancy', {
             await this.router.push(`/consulting/editArticle/${id}`)
         },
         async filterArticles(category) {
-            console.log(category)
-            const response = await axios.get(`/content?category=${category}`);
-            this.articles = response.data.content.data
+            try {
+                const response = await axios.get(`/content?category=${category}`);
+                this.articles = response.data.content.data
+                toast('Articles filtered by category!')
+            } catch (e) {
+                toast.error('No articles found!')
+            }
         },
     }
 })

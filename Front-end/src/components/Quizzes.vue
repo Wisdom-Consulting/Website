@@ -93,7 +93,7 @@ function showModal(index) {
                             </button>
                         </div>
                         <div v-else>
-                            <button @click="mySpaceStore.clicked()"
+                            <button @click="mySpaceStore.loadTest(quiz.id)"
                                     class="bg-[#003333] text-white text-sm font-bold py-2 px-4 rounded-full">Pass Quiz
                             </button>
                         </div>

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -19,17 +18,19 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
-
         $user = auth()->user();
-        $validated = $request->validated(
+        $request['user_id'] = $user->id;
+        $request->validate(
             [
                 'body' => 'required',
-                'user_id' => $user->id,
+                'user_id' => 'required'
             ]
         );
-        return Post::create($validated);
+//        return json_encode($request->all(), 400);
+        $post = Post::create($request->all());
+        return $post->load('user')->load('likes.user')->load('comments.user');
     }
 
     /**
@@ -37,22 +38,37 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post->load('likes.user');
+        return $post->load('likes.user')->load('comments.user')->load('user');
+    }
+
+    public function deleteLike(Post $post)
+    {
+        $user = auth()->user();
+
+            $likes = $post->likes()->where('user_id', $user->id)->get();
+            if($likes->count() > 0) {
+                return $post->likes()->where('user_id', $user->id)->delete();
+            }
+            else {
+                return response()->json(['error' => 'Like not found'], 404);
+            }
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        $validated = $request->validated(
+        $user = auth()->user();
+        $request['user_id'] = $user->id;
+        $request->validate(
             [
-                'title' => '',
-                'body' => '',
-                'user_id' => 'required',
+                'body' => 'required',
+                'user_id' => 'required'
             ]
         );
-        $post->update($validated);
+        $post->update($request->all());
         return $post;
     }
 

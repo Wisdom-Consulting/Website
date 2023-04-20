@@ -41,7 +41,7 @@ await consultancyStore.getArticles(page.value)
             <RouterLink to="" class="text-black">Read more</RouterLink>
           </h3>
         </div>
-        <button class="bg-[#003333] text-white rounded-2xl w-fit px-4 py-2 h-fit self-end">Read</button>
+        <button @click="consultancyStore.showArticle(article.id)" class="bg-[#003333] text-white rounded-2xl w-fit px-4 py-2 h-fit self-end">Read</button>
       </div>
     </div>
   </div>

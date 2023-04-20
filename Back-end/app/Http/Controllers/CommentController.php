@@ -32,7 +32,8 @@ class CommentController extends Controller
                 'post_id' => 'required'
             ]
         );
-        return Comment::create($data);
+        $comment = Comment::create($data);
+        return $comment->load('user:id,name,image');
     }
 
 

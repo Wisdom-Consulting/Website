@@ -14,6 +14,9 @@ import AddQuiz from "@/views/AddQuiz.vue";
 import EditQuiz from "@/components/editQuiz.vue";
 import {useLocalStorage} from "@vueuse/core";
 import EditArticle from "@/views/EditArticle.vue";
+import EditPost from "@/views/EditPost.vue";
+import Post from "@/components/Post.vue";
+import Test from "@/components/Test.vue";
 
 
 
@@ -115,8 +118,32 @@ const router = createRouter({
         },
         {
             path: '/consulting/editArticle/:id',
-            name: 'EditQuiz',
+            name: 'EditArticle',
             component: EditArticle,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/community/post/:id',
+            name: 'ShowArticle',
+            component: Post,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/posts/editPost/:id',
+            name: 'EditPost',
+            component: EditPost,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/quiz/test',
+            name: 'PassQuiz',
+            component: Test,
             meta: {
                 requiresAuth: true
             }

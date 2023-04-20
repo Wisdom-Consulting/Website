@@ -28,14 +28,22 @@ class LikeController extends Controller
      */
     public function store(Request $request)
     {
-        $request['user_id'] = auth()->user()->id;
-        $validatedData = $request->validate([
-            'post_id' => 'required|exists:posts,id',
-            'user_id' => 'required|exists:users,id',
-        ]);
-
-        // Create a new Like instance using the validated data
-        return Like::create($validatedData);
+        // Check if the user already liked the post and like if not
+        $user = auth()->user();
+        $request['user_id'] = $user->id;
+        $request->validate(
+            [
+                'post_id' => 'required',
+                'user_id' => 'required'
+            ]
+        );
+        $like = Like::where('post_id', $request->post_id)->where('user_id', $request->user_id)->first();
+        if ($like) {
+            return null;
+        } else {
+            $like = Like::create($request->all());
+            return $like->load('user');
+        }
     }
 
     /**

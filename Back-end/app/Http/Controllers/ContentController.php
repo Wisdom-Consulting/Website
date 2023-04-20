@@ -80,6 +80,11 @@ class ContentController extends Controller
         })->where('id', $content->id)->first();
     }
 
+    public function showOne(Content $content)
+    {
+        return Content::with('category')->with('user')->where('id', $content->id)->first();
+    }
+
     /**
      * Update the specified resource in storage.
      */
