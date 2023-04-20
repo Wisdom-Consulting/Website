@@ -33,10 +33,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-//Route::post('/comments', function ()
-//{
-//    return response()->json(['message' => 'Comment created successfully']);
-//});
 // Route for profile
 Route::middleware(['auth:sanctum'])->get('/profile', function (Request $request) {
     return $request->user();

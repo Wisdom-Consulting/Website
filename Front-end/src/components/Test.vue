@@ -10,42 +10,35 @@ const quizLevel = ref(mySpaceStore.test.level.name)
 const questions = ref(mySpaceStore.test.question)
 const quizCompleted = ref(false)
 const currentQuestion = ref(0)
-let selected = ref(null)
-let correct = ref(null)
-let question = ref(null)
+const selected = ref(null)
+const correct = ref(null)
+const score = ref(0)
 
-// const score = computed(() => {
-//     let value = 0
-//     questions.answer.map(a => {
-//         if (a.is_correct === true ) {
-//             console.log('correct');
-//             value++
-//         }
-//     })
-//     return value
-// })
 const getCurrentQuestion = computed(() => {
-    question.value = questions.value[currentQuestion.value]
+    let question = questions.value[currentQuestion.value]
     // console.log(question.value.answer)
     question.index = currentQuestion.value
     // assign the correct answer to the correct property
-    question.value.answer.map(a => {
-        if (a.is_correct === 0) {
+    question.answer.map(a => {
+        if (a.is_correct === 1) {
             correct.value = a.id
-            // console.log(correct.value)
+            console.log(correct.value)
         }
     })
 
     return question
 })
 const SetAnswer = (e) => {
-    selected = e.target.body
-    // e.target.value = null
+    selected.value = e.target.value
+    if(selected.value == correct.value) {
+        score.value++
+    }
+    e.target.value = null
 }
 const NextQuestion = () => {
     if (currentQuestion.value < questions.value.length - 1) {
         currentQuestion.value++
-        selected = null
+        selected.value = null
         console.log(correct.value)
         return
     }
@@ -61,19 +54,20 @@ const NextQuestion = () => {
         <section class="bg-[#003333] rounded-md p-10 w-full" v-if="!quizCompleted">
             <div class="flex flex-col mb-5">
                 <span class="self-end text-white">Score {{ score }}/{{ questions.length }}</span>
-                <span class="self-center text-white text-xl">{{ getCurrentQuestion.value.body }}</span>
+                <span class="self-center text-white text-xl">{{ getCurrentQuestion.body }}</span>
             </div>
 
             <div class="flex flex-col gap-4">
                 <label
-                        v-for="(answer, index) in getCurrentQuestion.value.answer"
+                        v-for="(answer, index) in getCurrentQuestion.answer"
                         :key="answer.id"
                         :for="'answer' + index"
-                        :class="`answer option bg-white rounded-3xl p-2 ${selected === answer.id &&  answer.id === correct ? 'correct' : 'wrong'} ${selected !== null &&  answer.id === selected ? 'disabled' : ''} ${correct === selected ? 'correct' : 'wrong'} ${correct === selected ? 'disabled'	: ''}`">
+                        :class="`answer option bg-white rounded-3xl p-2 ${selected == answer.id && selected ?  answer.id == correct ? 'correct' : 'wrong' : ''}
+                        ${answer.id != selected && selected ? 'disabled' : ''}
+                      `">
 
                     <input
                             type="radio"
-
                             :id="'answer' + index"
                             :name="answer.body"
                             :value="answer.id"
@@ -91,7 +85,7 @@ const NextQuestion = () => {
                 {{
                 getCurrentQuestion.index === questions.length - 1
                     ? 'Finish'
-                    : getCurrentQuestion.selected == null
+                    : selected == null
                         ? 'Select an option'
                         : 'Next question'
                 }}
@@ -101,6 +95,7 @@ const NextQuestion = () => {
         <section v-else>
             <h2>You have finished the quiz!</h2>
             <p>Your score is {{ score }}/{{ questions.length }}</p>
+            <button @click="mySpaceStore.addScore(score)" class="bg-[#003333] text-white rounded-3xl p-4">Back to MySpace</button>
         </section>
     </main>
 </template>
@@ -168,9 +163,9 @@ h1 {
 /*    cursor: pointer;*/
 /*}*/
 
-.option:hover {
-    background-color: #2d213f;
-}
+/*.option:hover {*/
+/*    background-color: #2d213f;*/
+/*}*/
 
 .option.correct {
     background-color: #2cce7d;

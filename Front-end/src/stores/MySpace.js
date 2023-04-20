@@ -46,5 +46,17 @@ export const useMySpaceStore = defineStore('MySpace', {
                 toast.error('Error loading quiz')
             }
         },
+        async addScore(score) {
+            try {
+                const response = await axios.post('/api/scores', {
+                    score: score,
+                    quiz_id: this.Quiz.id,
+                })
+                await this.router.push('/quiz/academy')
+                toast.success('Score added')
+            } catch (error) {
+                toast.error('Error adding score')
+            }
+        },
 }
 })
